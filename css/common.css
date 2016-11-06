@@ -1,0 +1,28 @@
+html {
+    width: 100%;
+}
+
+body {
+    width: 80%;
+    margin: auto;
+}
+
+header {
+
+}
+
+header > #logo {
+    float: left;
+}
+
+header > h1 {
+    float: left;
+}
+
+header > #sign-in {
+    float: right;
+}
+
+main {
+    clear: both;
+}
