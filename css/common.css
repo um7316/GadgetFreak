@@ -7,10 +7,6 @@ body {
     margin: auto;
 }
 
-header {
-
-}
-
 header > #logo {
     float: left;
 }
@@ -19,10 +15,30 @@ header > h1 {
     float: left;
 }
 
-header > #sign-in {
+header > #sign-in, header > #log-out {
     float: right;
 }
 
 main {
     clear: both;
+}
+
+#device-list {
+    list-style-type: none;
+}
+
+#device-list > li {
+    clear: both;
+}
+
+#device-list > li > img {
+    float: left;
+}
+
+#device-list > li > .device-info {
+    float: left;
+}
+
+#device-list > li > .device-stats {
+    float: right;
 }
