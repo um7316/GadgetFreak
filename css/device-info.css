@@ -1,0 +1,15 @@
+#images {
+    float: left;
+}
+
+#info {
+    float: left;
+}
+
+#specifications {
+    float: right;
+}
+
+#user-score {
+    float: right;
+}

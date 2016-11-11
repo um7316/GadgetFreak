@@ -3,12 +3,15 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Gadget Freak</title>
+    <title>Gadget Freak - Device X</title>
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/device-info.css">
 </head>
 <body>
     <header>
-        <img src="--gf-logo--" />
-        <h3>Gadget Freak</h3>
+        <img src="http://placehold.it/180?text=logo" id="logo" />
+        <h1>Gadget Freak</h1>
 
         <div id="log-out">
             Username<br />
@@ -16,42 +19,40 @@
             <input type="submit" value="Log Out" />
         </div>
     </header>
-    <div id="images">
-        <img src="---main-image---" />
-
-        <img src="---sub-image-1---" />
-        <img src="---sub-image-2---" />
-        <img src="---sub-image-3---" />
-
-        <input type="submit" value="Add image" />
-    </div>
     <main>
-        <h3>Gadget name</h3>
-        <p>
-            Gadget description
-        </p>
+        <div id="images">
+            <img src="http://placehold.it/320x520" />
 
-        <div id="review1">
-            <span>Username, 18. 10. 2016, 18:30</span><span>4 stars</span>
-            <img src="--review-img---" />
-            <p>Review body</p>
-            <a href="--link-to-comments--">3 comments</a>
-            <a href="link-to-add-comment--">Add comment</a>
+            <div>
+                <img src="http://placehold.it/90" />
+                <img src="http://placehold.it/90" />
+                <img src="http://placehold.it/90" />
+            </div>
+
+            <input type="submit" value="Add image" />
         </div>
+        <div id="info">
+            <h3>Gadget name</h3>
+            <div id="user-score">
+                User reviews: 3.5 stars
+            </div>
+            <p>
+                Gadget description
+            </p>
 
-        <input type="submit" value="Add review" />
-        <input type="submit" value="Add comment" />
+            <input type="submit" value="Device forum" />
+        </div>
+        <div id="specifications">
+            <table>
+                <tr><th>Technical specifications</th></tr>
+                <tr><td>Spec 1</td><td>Value 1</td></tr>
+                <tr><td>Spec 2</td><td>Value 2</td></tr>
+                <tr><td>Spec 3</td><td>Value 3</td></tr>
+                <tr><td>Spec 4</td><td>Value 4</td></tr>
+            </table>
+            <input type="submit" value="Edit specifications" />
+        </div>
     </main>
-    <div id="specifications">
-        <table>
-            <tr><th>Technical specifications</th></tr>
-            <tr><td>Spec 1</td><td>Value 1</td></tr>
-            <tr><td>Spec 2</td><td>Value 2</td></tr>
-            <tr><td>Spec 3</td><td>Value 3</td></tr>
-            <tr><td>Spec 4</td><td>Value 4</td></tr>
-        </table>
-        <input type="submit" value="Edit specifications" />
-    </div>
 </body>
 
 </html>
