@@ -1,10 +1,15 @@
 html {
-    width: 100%;
+    background-color: #46494C;
 }
 
 body {
+    background-color: #C5C3C6;
     width: 960px;
     margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 header {
@@ -17,6 +22,7 @@ header > h1 {
 
 main {
     display: flex;
+    flex-grow: 1;
 }
 
 .grow {
