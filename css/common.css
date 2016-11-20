@@ -1,5 +1,8 @@
 html {
     background-color: #46494C;
+
+    color: #46494C;
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 body {
@@ -18,6 +21,22 @@ header {
 
 header > h1 {
     margin-right: auto;
+
+    font-size: 50px;
+    font-weight: 900;
+}
+
+h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+#sign-in, #log-out {
+    border-radius: 15px 15px 15px 15px;
+    border: 5px solid #1985A1;
+    background-color: #DCDCDD;
+    padding: 20px;
+    margin: 15px;
 }
 
 main {
