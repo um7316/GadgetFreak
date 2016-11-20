@@ -3,42 +3,38 @@ html {
 }
 
 body {
-    width: 80%;
+    width: 960px;
     margin: auto;
 }
 
-header > #logo {
-    float: left;
+header {
+    display: flex;
 }
 
 header > h1 {
-    float: left;
-}
-
-header > #sign-in, header > #log-out {
-    float: right;
+    margin-right: auto;
 }
 
 main {
-    clear: both;
+    display: flex;
+}
+
+.grow {
+    flex-grow: 1;
 }
 
 #device-list {
     list-style-type: none;
 }
 
-#device-list > li {
-    clear: both;
+#device-list > li, #review-list > li {
+    display: flex;
 }
 
-#device-list > li > img {
-    float: left;
+.device-stats {
+    margin-left: auto;
 }
 
-#device-list > li > .device-info {
-    float: left;
-}
-
-#device-list > li > .device-stats {
-    float: right;
+aside {
+    width: 300px;
 }

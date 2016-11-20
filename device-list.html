@@ -6,24 +6,23 @@
     <title>Gadget Freak - Device List</title>
 
     <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/device-list.css">
 </head>
 <body>
     <header>
         <img src="http://placehold.it/180?text=logo" id="logo" />
         <h1>Gadget Freak</h1>
 
+        <form id="search">
+            <label>Search:</label><input type="text" /><input type="submit" value="Search" />
+        </form>
         <div id="log-out">
             Username<br />
             <a href="--profile-link--">Your profile</a><br />
             <input type="submit" value="Log Out" />
         </div>
-        <form id="search">
-            <label>Search:</label><input type="text" /><input type="submit" value="Search" />
-        </form>
     </header>
     <main>
-        <ul id="device-list">
+        <ul id="device-list" class="grow">
             <li>
                 <img src="http://placehold.it/90" />
                 <div class="device-info">
@@ -67,36 +66,36 @@
                 </div>
             </li>
         </ul>
+        <aside>
+            <input type="submit" value="Add new device" id="add-device" />
+            <h3>Latest reviews:</h3>
+            <ul id="review-list">
+                <li>
+                    <img src="http://placehold.it/70" />
+                    <div class="review-info">
+                        <h4>Device Ž</h4>
+                        5 stars <br />
+                        Author: Janez
+                    </div>
+                </li>
+                <li>
+                    <img src="http://placehold.it/70" />
+                    <div class="review-info">
+                        <h4>Device Ž</h4>
+                        5 stars <br />
+                        Author: Janez
+                    </div>
+                </li>
+                <li>
+                    <img src="http://placehold.it/70" />
+                    <div class="review-info">
+                        <h4>Device Ž</h4>
+                        5 stars <br />
+                        Author: Janez
+                    </div>
+                </li>
+        </aside>
     </main>
-    <aside>
-        <input type="submit" value="Add new device" id="add-device" />
-        <h3>Latest reviews:</h3>
-        <ul id="review-list">
-            <li>
-                <img src="http://placehold.it/70" />
-                <div class="review-info">
-                    <h4>Device Ž</h4>
-                    5 stars <br />
-                    Author: Janez
-                </div>
-            </li>
-            <li>
-                <img src="http://placehold.it/70" />
-                <div class="review-info">
-                    <h4>Device Ž</h4>
-                    5 stars <br />
-                    Author: Janez
-                </div>
-            </li>
-            <li>
-                <img src="http://placehold.it/70" />
-                <div class="review-info">
-                    <h4>Device Ž</h4>
-                    5 stars <br />
-                    Author: Janez
-                </div>
-            </li>
-    </aside>
 </body>
 
 </html>

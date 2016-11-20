@@ -6,7 +6,6 @@
     <title>Gadget Freak - Device X</title>
 
     <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/device-info.css">
 </head>
 <body>
     <header>
@@ -20,8 +19,8 @@
         </div>
     </header>
     <main>
-        <div id="images">
-            <img src="http://placehold.it/320x520" />
+        <aside id="images">
+            <img src="http://placehold.it/290x520" />
 
             <div>
                 <img src="http://placehold.it/90" />
@@ -30,8 +29,8 @@
             </div>
 
             <input type="submit" value="Add image" />
-        </div>
-        <div id="info">
+        </aside>
+        <div id="info" class="grow">
             <h3>Gadget name</h3>
             <div id="user-score">
                 User reviews: 3.5 stars
@@ -42,7 +41,7 @@
 
             <input type="submit" value="Device forum" />
         </div>
-        <div id="specifications">
+        <aside id="specifications">
             <table>
                 <tr><th>Technical specifications</th></tr>
                 <tr><td>Spec 1</td><td>Value 1</td></tr>
@@ -51,7 +50,7 @@
                 <tr><td>Spec 4</td><td>Value 4</td></tr>
             </table>
             <input type="submit" value="Edit specifications" />
-        </div>
+        </aside>
     </main>
 </body>
 
