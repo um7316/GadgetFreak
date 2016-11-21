@@ -27,11 +27,12 @@ h1 {
     margin-right: auto;
 
     font-size: 50px;
-    font-weight: 900;
+    font-weight: 500;
 }
 
 h1 > span {
     font-size: 65px;
+    font-weight: 900;
     color: #1985A1;
 }
 
@@ -57,12 +58,34 @@ main {
     flex-grow: 1;
 }
 
-#device-list {
+#device-list, #review-list {
     list-style-type: none;
+
+    padding: 0px;
+    margin: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #device-list > li, #review-list > li {
     display: flex;
+
+    background-color: #DCDCDD;
+
+    padding: 15px;
+    border: 3px solid #4C5C68;
+    border-bottom: 0px;
+}
+
+#device-list > li:first-child, #review-list > li:first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#device-list > li:last-child, #review-list > li:last-child {
+    border-bottom: 3px solid #4C5C68;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .device-stats {
