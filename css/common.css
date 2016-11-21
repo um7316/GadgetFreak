@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
 html {
     background-color: #46494C;
 
@@ -36,11 +42,6 @@ h1 > span {
     color: #1985A1;
 }
 
-h3 {
-    margin: 0px;
-    padding: 0px;
-}
-
 #sign-in, #log-out {
     border-radius: 15px 15px 15px 15px;
     border: 5px solid #1985A1;
@@ -58,16 +59,30 @@ main {
     flex-grow: 1;
 }
 
-#device-list, #review-list {
-    list-style-type: none;
-
-    padding: 0px;
+.my-list-wrapper {
     margin: 50px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
-#device-list > li, #review-list > li {
+.my-list-header {
+    display: inline-block; /* da ne zavzame celotne sirine starsa */
+
+    background-color: #DCDCDD;
+
+    border: 3px solid #4C5C68;
+    border-bottom: 0px;
+    padding: 10px;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.my-list {
+    list-style-type: none;
+}
+
+.my-list > li {
     display: flex;
 
     background-color: #DCDCDD;
@@ -77,12 +92,11 @@ main {
     border-bottom: 0px;
 }
 
-#device-list > li:first-child, #review-list > li:first-child {
-    border-top-left-radius: 15px;
+.my-list > li:first-child {
     border-top-right-radius: 15px;
 }
 
-#device-list > li:last-child, #review-list > li:last-child {
+.my-list > li:last-child {
     border-bottom: 3px solid #4C5C68;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
