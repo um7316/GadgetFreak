@@ -12,13 +12,19 @@
         <img src="images/logo.jpg" id="logo" />
         <h1><span>G</span>adget<span>F</span>reak</h1>
 
-        <form id="search">
-            <label>Search:</label><input type="text" /><input type="submit" value="Search" />
-        </form>
-        <div id="log-out">
-            Username<br />
-            <a href="--profile-link--">Your profile</a><br />
-            <input type="submit" value="Log Out" />
+        <div id="profile-and-search">
+            <form id="search">
+                <input type="text" placeholder="e.g. iphone" />
+                <label>
+                    <span class="screen-reader">Search</span>
+                </label>
+                <input type="image" src="images/search.png" alt="Submit" />
+            </form>
+            <div id="log-out">
+                Username<br />
+                <a href="--profile-link--">Your profile</a><br />
+                <input type="submit" value="Log Out" />
+            </div>
         </div>
     </header>
     <main>
