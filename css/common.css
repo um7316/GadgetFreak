@@ -53,16 +53,21 @@ h1 > span {
 main {
     display: flex;
     flex-grow: 1;
+
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.aside-right {
+    margin-left: 50px;
+}
+
+.aside-left {
+    margin-right: 50px;
 }
 
 .grow {
     flex-grow: 1;
-}
-
-.my-list-wrapper {
-    margin: 50px;
-    margin-top: 0px;
-    margin-bottom: 0px;
 }
 
 .my-list-header {
