@@ -9,12 +9,14 @@
 </head>
 <body>
     <header>
-        <img src="images/logo.jpg" id="logo" />
-        <h1><span>G</span>adget<span>F</span>reak</h1>
+        <div id="logo-and-title">
+            <img src="images/logo.jpg" id="logo" />
+            <h1><span>G</span>adget<span>F</span>reak</h1>
+        </div>
 
         <div id="profile-and-search">
-            <form id="search" action="search-results.html?search=myphone">
-                <input type="text" placeholder="e.g. myphone" required />
+            <form id="search" class="grow" action="search-results.html?search=myphone">
+                <input type="text" class="grow" placeholder="e.g. myphone" required />
                 <label>
                     <span class="screen-reader">Search</span>
                 </label>
@@ -40,7 +42,7 @@
     <main>
         <div class="my-list-wrapper grow">
             <h2 class = "my-list-header">Top devices:</h2>
-            <ul class="my-list">
+            <ul class="my-list" id="device-list">
                 <li>
                     <img src="images/devices/GoAmateur/thumb.png" />
                     <div class="device-info">

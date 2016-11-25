@@ -26,12 +26,13 @@ html {
 
 body {
     background-color: #C5C3C6;
-    width: 1024px;
     margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
 
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 
     border: 10px solid #1985A1;
     border-top: none;
@@ -40,26 +41,26 @@ body {
 
 header {
     display: flex;
+    flex-direction: column;
+}
+
+#logo-and-title {
+    display: flex;
+    margin: auto;
 }
 
 h1 {
     margin-right: auto;
     margin-top: 25px;
 
-    font-size: 50px;
+    font-size: 8vw; /* za mobilne naprave dinamicen font size */
     font-weight: 500;
 }
 
 h1 > span {
-    font-size: 65px;
+    font-size: 1.3em;
     font-weight: 900;
     color: #1985A1;
-}
-
-#profile-and-search {
-    display: flex;
-
-    margin: 15px;
 }
 
 #sign-in, #log-out {
@@ -71,10 +72,9 @@ h1 > span {
 }
 
 #log-out {
-    border-bottom-left-radius: 0px; /* zaradi search box-a */
-
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #log-out > div { /* slika in text div */
@@ -84,7 +84,7 @@ h1 > span {
 #log-out > div > div { /* text div */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
 
     margin-left: 20px;
 }
@@ -93,17 +93,22 @@ h1 > span {
     align-self: flex-end;
 }
 
+#profile-and-search {
+    display: flex;
+    flex-direction: column;
+}
+
 #search {
-    align-self: flex-end;
+    align-self: stretch;
     background-color: #DCDCDD;
 
     display: flex;
     align-items: center;
 
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-radius: 15px;
     border: 5px solid #1985A1;
-    border-right: 0px;
+
+    margin-bottom: 10px;
 }
 
 #search > input[type="text"] {
@@ -120,24 +125,17 @@ h1 > span {
 
 #breadcrumbs {
     margin-top: 10px;
-    margin-left: 50px;
     margin-bottom: 20px;
 }
 
 main {
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
-
-    margin-left: 50px;
-    margin-right: 50px;
 }
 
-.aside-right {
-    margin-left: 50px;
-}
-
-.aside-left {
-    margin-right: 50px;
+aside {
+    margin-top: 20px;
 }
 
 .grow {
@@ -191,6 +189,11 @@ main {
     height: 60px;
 }
 
+#device-list > li > img {
+    width: 90px;
+    height: 90px;
+}
+
 .device-info {
     margin-left: 10px;
 }
@@ -224,10 +227,6 @@ main {
 
 .review-info > a {
     font-weight: bold;
-}
-
-aside {
-    width: 300px;
 }
 
 input[type="submit"] {
@@ -270,6 +269,10 @@ footer {
     background: linear-gradient(to bottom, #c5c3c6 0%,#4C5C68 50%);
     padding: 20px 50px;
     padding-top: 80px;
+    margin-top: 20px;
+
+    margin-left: -50px;
+    margin-right: -50px;
 
     color: #C5C3C6;
 
@@ -279,4 +282,74 @@ footer {
 
 #footer-right {
     margin-left: auto;
+}
+
+@media screen and (min-width: 600px) {
+    /* tablets */
+
+    h1 {
+        font-size: 50px;
+    }
+
+    #profile-and-search {
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+
+    #search {
+        align-self: flex-end;
+
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 0px;
+
+        margin-bottom: 0px;
+    }
+
+    #log-out {
+        border-bottom-left-radius: 0px; /* zaradi search box-a */
+
+        flex-direction: column;
+    }
+
+    #log-out > div > div { /* profile text div */
+        align-items: flex-end;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    /* desktops */
+
+    body {
+        width: 1024px;
+    }
+
+    header {
+        flex-direction: row;
+        margin-left: -50px;
+    }
+
+    #profile-and-search {
+        margin: 15px;
+    }
+
+    #log-out {
+        min-width: 250px;
+    }
+
+    main {
+        flex-direction: row;
+    }
+
+    aside {
+        width: 300px;
+    }
+
+    .aside-left {
+        margin-right: 50px;
+    }
+
+    .aside-right {
+        margin-left: 50px;
+    }
 }
