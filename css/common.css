@@ -13,6 +13,10 @@
     clip: rect(1px, 1px, 1px, 1px);
 }
 
+a, a:visited {
+    color: #1985A1;
+}
+
 html {
     background-color: #46494C;
 
@@ -175,6 +179,11 @@ main {
     border-bottom: 3px solid #4C5C68;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+
+.my-list-pagination {
+    display: block !important;
+    text-align: center;
 }
 
 .device-stats {
