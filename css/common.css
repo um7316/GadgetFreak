@@ -17,6 +17,10 @@ a, a:visited {
     color: #1985A1;
 }
 
+.grow {
+    flex-grow: 1;
+}
+
 html {
     background-color: #46494C;
 
@@ -134,12 +138,13 @@ main {
     flex-grow: 1;
 }
 
-#reviews {
-    margin-top: 20px;
+main > div { /* srednji div */
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
-.grow {
-    flex-grow: 1;
+#reviews {
+    margin-top: 20px;
 }
 
 .my-list-header {
@@ -286,6 +291,8 @@ footer {
 
 /* device-info */
 #device-main {
+    align-items: center; /* da se prav postavijo slike */
+
     background-color: #DCDCDD;
 
     padding: 15px;
@@ -306,6 +313,10 @@ footer {
     justify-content: flex-end;
 
     margin-top: 20px;
+}
+
+table {
+    table-layout: fixed; /* za enako siroke stolpce */
 }
 
 table, th, td {
@@ -385,6 +396,14 @@ td {
 
     main {
         flex-direction: row;
+    }
+
+    #device-main {
+        align-items: flex-start;
+    }
+
+    main > div { /* srednji div */
+        margin: 0px;
     }
 
     aside {
