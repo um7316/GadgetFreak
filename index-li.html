@@ -13,8 +13,8 @@
         <h1><span>G</span>adget<span>F</span>reak</h1>
 
         <div id="profile-and-search">
-            <form id="search">
-                <input type="text" placeholder="e.g. iphone" />
+            <form id="search" action="search-results.html?search=myphone">
+                <input type="text" placeholder="e.g. myphone" required />
                 <label>
                     <span class="screen-reader">Search</span>
                 </label>
@@ -25,7 +25,7 @@
                     <img src="images/profiles/janezk.png" />
                     <div>
                         <span>Janez Kočevar</span>
-                        <a href="--profile-link--">View profile</a>
+                        <a href="profile.html?user=janez">View profile</a>
                     </div>
                 </div>
                 <form action="index.html">
@@ -100,7 +100,9 @@
             </ul>
         </div>
         <aside class="aside-right">
-            <input type="submit" value="Add new device" id="add-device-btn" />
+            <form action="add-device.html">
+                <input type="submit" value="Add new device" id="add-device-btn" />
+            </form>
             <div class="my-list-wrapper grow">
                 <h3 class = "my-list-header">Latest reviews:</h3>
                 <ul class="my-list" id="review-list">
@@ -144,7 +146,7 @@
         <div id="footer-right">
             Kontakt:<br/>
             Tel: +386 41 123 456<br />
-            Mail: info@gf-not-real.com
+            Mail: <a href="mailto:info@gf-not-real.com">info@gf-not-real.com</a>
         </div>
     </footer>
 </body>
