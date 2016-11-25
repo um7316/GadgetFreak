@@ -284,6 +284,52 @@ footer {
     margin-left: auto;
 }
 
+/* device-info */
+#device-main {
+    background-color: #DCDCDD;
+
+    padding: 15px;
+    border: 3px solid #4C5C68;
+    border-radius: 15px;
+}
+
+#device-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    font-size: 15px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+}
+
+table, th, td {
+    width: 100%;
+
+    padding: 15px;
+    border: 2px solid #4C5C68;
+
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #4C5C68;
+    color: #DCDCDD;
+}
+
+td {
+    background-color: #C5C3C6;
+}
+
+.button-wrapper > form {
+    margin-left: 10px;
+}
+
 @media screen and (min-width: 600px) {
     /* tablets */
 

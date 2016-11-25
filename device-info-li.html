@@ -37,40 +37,49 @@
         </div>
     </header>
     <div id="breadcrumbs">
-        Home
+        <a href="index-li.html">Home</a>&nbsp;
+        > GoAmateur
     </div>
-    <main>
+    <main id="device-main">
         <aside id="images" class="aside-left">
-            <img src="http://placehold.it/290x520" />
+            <img src="http://placehold.it/280x420" />
 
             <div>
                 <img src="http://placehold.it/90" />
                 <img src="http://placehold.it/90" />
                 <img src="http://placehold.it/90" />
             </div>
-
-            <input type="submit" value="Add image" />
         </aside>
         <div id="info" class="grow">
-            <h3>Gadget name</h3>
-            <div id="user-score">
-                User reviews: 3.5 stars
+            <div id="device-header">
+                <h3>GoAmateur</h3>
+                <div id="user-score">
+                    User reviews:<br />
+                    4.6 stars
+                </div>
             </div>
             <p>
-                Gadget description
+                Prenosna kamera, skoraj tako dobra kot izdelek, ki
+                ga posnema, po veliko nižji ceni!
             </p>
 
-            <input type="submit" value="Device forum" />
+            <div class="button-wrapper">
+                <form action="edit-device.html">
+                    <input type="submit" value="Edit device" />
+                </form>
+                <form action="device-forum-li.html">
+                    <input type="submit" value="Device forum" />
+                </form>
+            </div>
         </div>
         <aside id="specifications" class="aside-right">
-            <table>
-                <tr><th>Technical specifications</th></tr>
+            <table border="1">
+                <tr><th colspan="2">Technical specifications:</th></tr>
                 <tr><td>Spec 1</td><td>Value 1</td></tr>
                 <tr><td>Spec 2</td><td>Value 2</td></tr>
                 <tr><td>Spec 3</td><td>Value 3</td></tr>
                 <tr><td>Spec 4</td><td>Value 4</td></tr>
             </table>
-            <input type="submit" value="Edit specifications" />
         </aside>
     </main>
     <footer>
