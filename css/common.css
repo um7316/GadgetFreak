@@ -609,4 +609,8 @@ textarea {
         flex-direction: column !important;
         align-items: center !important;
     }
+
+    .review-margin {
+        margin-top: 50px;
+    }
 }
