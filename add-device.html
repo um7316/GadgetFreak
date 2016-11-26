@@ -9,14 +9,16 @@
 </head>
 <body>
     <header>
-        <div id="logo-and-title">
-            <img src="images/logo.jpg" id="logo" />
-            <h1><span>G</span>adget<span>F</span>reak</h1>
-        </div>
+        <a href="index-li.html" class="div-link">
+            <div id="logo-and-title">
+                <img src="images/logo.jpg" id="logo" />
+                <h1><span>G</span>adget<span>F</span>reak</h1>
+            </div>
+        </a>
 
         <div id="profile-and-search">
-            <form id="search" class="grow" action="search-results.html?search=myphone">
-                <input type="text" class="grow" placeholder="e.g. myphone" required />
+            <form id="search" class="grow" action="search-results.html" method="get">
+                <input type="text" name="search" class="grow" placeholder="e.g. myphone" required />
                 <label>
                     <span class="screen-reader">Search</span>
                 </label>
@@ -30,11 +32,10 @@
                         <a href="profile.html?user=janez">View profile</a>
                     </div>
                 </div>
-                <form action="index.html">
-                    <input type="submit" value="Log Out" />
-                </form>
+                <a href="index.html" class="link-button">Log Out</a>
             </div>
         </div>
+    </header>
     </header>
     <div id="breadcrumbs">
         <a href="index-li.html">Home</a>&nbsp;
