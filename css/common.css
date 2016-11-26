@@ -368,6 +368,10 @@ td {
     align-self: flex-end;
 }
 
+.form-list > label > input, td > input {
+    width: 100%;
+}
+
 /* ----------- profile ----------- */
 
 #profile {
@@ -483,6 +487,8 @@ input[value="comment"]:checked ~ .hide-if-comment {
 textarea {
     width: 100%;
     max-width: 100%;
+
+    resize: vertical;
 }
 
 .my-list-comments {
@@ -585,7 +591,7 @@ textarea {
         align-self: stretch;
     }
 
-    table {
+    #specifications > table {
         table-layout: auto;
     }
 
