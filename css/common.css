@@ -360,7 +360,7 @@ td {
     align-self: flex-end;
 }
 
-/* ----------- add-device ----------- */
+/* ----------- profile ----------- */
 
 #profile {
     display: flex;
@@ -416,6 +416,13 @@ dt {
     border-top: 3px solid #4C5C68;
 
     align-self: stretch;
+}
+
+/* ----------- register ----------- */
+
+#register {
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 @media screen and (min-width: 600px) {
@@ -509,5 +516,10 @@ dt {
 
     table {
         table-layout: auto;
+    }
+
+    .register-main {
+        flex-direction: column !important;
+        align-items: center !important;
     }
 }
