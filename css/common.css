@@ -343,6 +343,7 @@ td {
 }
 
 /* ----------- add-device ----------- */
+
 .form-list {
     display: flex;
     flex-direction: column;
@@ -350,11 +351,71 @@ td {
 
 .form-list > label {
     display: flex;
+    justify-content: space-between;
     margin-top: 10px;
 }
 
 .form-list > input[type="submit"] {
     margin-top: 20px;
+    align-self: flex-end;
+}
+
+/* ----------- add-device ----------- */
+
+#profile {
+    display: flex;
+    margin: 20px;
+}
+
+#profile > img {
+    width: 60px;
+    height: 60px;
+}
+
+#profile > div {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+}
+
+#statistics > div {
+    display: flex;
+}
+
+dl {
+    margin-left: 10px;
+}
+
+dt, dd {
+    float: left;
+}
+
+dt {
+    clear: both;
+    margin-bottom: 5px;
+}
+
+#upload-profile-pic-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#upload-profile-pic-form > input[type="submit"] {
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+.aside-border-left {
+    /* tukaj je rob na vrhu zaradi mobilnih naprav */
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-top: 3px solid #4C5C68;
+
+    align-self: stretch;
 }
 
 @media screen and (min-width: 600px) {
@@ -432,6 +493,18 @@ td {
 
     .aside-right {
         margin-left: 50px;
+    }
+
+    .aside-border-left {
+        margin-top: -15px;
+        margin-bottom: -15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 15px;
+        border-left: 3px solid #4C5C68;
+        border-top: 0px;
+
+        align-self: stretch;
     }
 
     table {

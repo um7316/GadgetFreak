@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Gadget Freak - janezk</title>
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<body>
+    <header>
+        <div id="logo-and-title">
+            <img src="images/logo.jpg" id="logo" />
+            <h1><span>G</span>adget<span>F</span>reak</h1>
+        </div>
+
+        <div id="profile-and-search">
+            <form id="search" class="grow" action="search-results.html?search=myphone">
+                <input type="text" class="grow" placeholder="e.g. myphone" required />
+                <label>
+                    <span class="screen-reader">Search</span>
+                </label>
+                <input type="image" src="images/search.png" alt="Submit" />
+            </form>
+            <div id="log-out">
+                <div>
+                    <img src="images/profiles/janezk.png" />
+                    <div>
+                        <span>Janez Kočevar</span>
+                        <a href="profile.html?user=janez">View profile</a>
+                    </div>
+                </div>
+                <form action="index.html">
+                    <input type="submit" value="Log Out" />
+                </form>
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumbs">
+        <a href="index-li.html">Home</a>&nbsp;
+        > Profile
+    </div>
+    <main id="device-main">
+        <div class="grow">
+            <h2>Your profile:</h2>
+            <div id="profile">
+                <img src="images/profiles/janezk.png" />
+                <div>
+                    <h3>Name and surname:</h3>
+                    <span>Janez Kočevar</span>
+                    <h3>Username:</h3>
+                    <span>janezk</span>
+                </div>
+            </div>
+            <h2>Statistics:</h2>
+            <dl id="statistics">
+                <dt>Devices created:&nbsp;</dt><dd>3</dd>
+                <dt>Reviews posted:&nbsp;</dt><dd>5</dd>
+                <dt>Comments posted:&nbsp;</dt><dd>10</dd>
+            </dl>
+        </div>
+        <aside class="aside-right aside-border-left">
+            <h2>Change profile picture:</h2>
+            <form action="profile.html" id="upload-profile-pic-form">
+                <label>Choose new picture:</label>
+                <input type="file" name="profile-pic" accept="image/*" required />
+                <input type="submit" value="Upload" />
+            </form>
+            <h2>Change password:</h2>
+            <form action="profile.html" class="form-list">
+                <label>Old password: <input type="text" size="15" required /></label>
+                <label>New password: <input type="text" size="15" required /></label>
+                <label>Repeat password: <input type="text" size="15" required /></label>
+                <input type="submit" value="Change password" />
+            </form>
+        </aside>
+    </main>
+    <footer>
+        <div id="footer-left">
+            &copy; 2016 GadgetFreak
+        </div>
+        <div id="footer-right">
+            Kontakt:<br/>
+            Tel: +386 41 123 456<br />
+            Mail: <a href="mailto:info@gf-not-real.com">info@gf-not-real.com</a>
+        </div>
+    </footer>
+</body>
+
+</html>
