@@ -417,4 +417,8 @@ td {
     .aside-right {
         margin-left: 50px;
     }
+
+    table {
+        table-layout: auto;
+    }
 }
