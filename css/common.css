@@ -346,7 +346,7 @@ td {
     background-color: #C5C3C6;
 }
 
-.button-wrapper > form {
+.button-wrapper > a {
     margin-left: 10px;
 }
 
@@ -485,12 +485,12 @@ textarea {
     max-width: 100%;
 }
 
-.my-list-comments, .my-list-comments > form {
+.my-list-comments {
     display: flex;
     flex-direction: column;
 }
 
-.my-list-comments > form > input[type="submit"] {
+.my-list-comments > a {
     align-self: flex-end;
     margin-top: 10px;
     margin-bottom: 10px;

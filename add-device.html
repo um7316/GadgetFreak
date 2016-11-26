@@ -41,7 +41,7 @@
         <a href="index-li.html">Home</a>&nbsp;
         > Add device
     </div>
-    <form action="device-info-li.html" method="POST" id="device-main">
+    <form action="device-info-li.html" method="post" id="device-main">
         <aside id="images" class="aside-left form-list">
             <h2>Images:</h2>
             <label>Main image:</label><input type="file" name="pic1" accept="image/*" required>
@@ -53,18 +53,18 @@
             <div id="device-header">
                 <h2>Main info:</h2>
             </div>
-            <label>Title: <input type="text" required /></label>
+            <label>Title: <input type="text" name="title" required /></label>
             <label>Description:</label>
-            <textarea rows="8" required></textarea>
+            <textarea name="description" rows="8" required></textarea>
             <input type="submit" value="Add device" />
         </div>
         <aside id="specifications" class="aside-right aside-border-left">
             <table border="1">
                 <tr><th colspan="2">Technical specifications:</th></tr>
-                <tr><td><input type="text" placeholder="specification" size="10" /></td><td><input type="text" placeholder="value" size="10" /></td></tr>
-                <tr><td><input type="text" placeholder="specification" size="10" /></td><td><input type="text" placeholder="value" size="10" /></td></tr>
-                <tr><td><input type="text" placeholder="specification" size="10" /></td><td><input type="text" placeholder="value" size="10" /></td></tr>
-                <tr><td><input type="text" placeholder="specification" size="10" /></td><td><input type="text" placeholder="value" size="10" /></td></tr>
+                <tr><td><input type="text" name="spec1" placeholder="specification" size="10" /></td><td><input type="text" name="val1" placeholder="value" size="10" /></td></tr>
+                <tr><td><input type="text" name="spec2" placeholder="specification" size="10" /></td><td><input type="text" name="val2" placeholder="value" size="10" /></td></tr>
+                <tr><td><input type="text" name="spec3" placeholder="specification" size="10" /></td><td><input type="text" name="val3" placeholder="value" size="10" /></td></tr>
+                <tr><td><input type="text" name="spec4" placeholder="specification" size="10" /></td><td><input type="text" name="val4" placeholder="value" size="10" /></td></tr>
             </table>
         </aside>
     </form>
