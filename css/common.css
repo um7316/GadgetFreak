@@ -441,6 +441,26 @@ dt {
     margin-top: 3px;
 }
 
+/* ----------- add topic ----------- */
+
+input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 3px;
+}
+
+input[value="comment"]:checked ~ .hide-if-comment {
+    display: none;
+}
+
+.hide-if-comment {
+    display: flex;
+    flex-direction: column;
+}
+
+.hide-if-comment > label {
+    margin-top: 10px;
+}
+
 /* ----------- topic ----------- */
 
 #review-score {
