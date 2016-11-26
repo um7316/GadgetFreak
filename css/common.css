@@ -132,13 +132,13 @@ h1 > span {
     margin-bottom: 20px;
 }
 
-main {
+main, #device-main {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-main > div { /* srednji div */
+main > div, #device-main > div { /* srednji div */
     margin-top: 100px;
     margin-bottom: 100px;
 }
@@ -289,7 +289,8 @@ footer {
     margin-left: auto;
 }
 
-/* device-info */
+/* ----------- device-info ----------- */
+
 #device-main {
     align-items: center; /* da se prav postavijo slike */
 
@@ -339,6 +340,21 @@ td {
 
 .button-wrapper > form {
     margin-left: 10px;
+}
+
+/* ----------- add-device ----------- */
+.form-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-list > label {
+    display: flex;
+    margin-top: 10px;
+}
+
+.form-list > input[type="submit"] {
+    margin-top: 20px;
 }
 
 @media screen and (min-width: 600px) {
@@ -394,7 +410,7 @@ td {
         min-width: 250px;
     }
 
-    main {
+    main, #device-main {
         flex-direction: row;
     }
 
@@ -402,7 +418,7 @@ td {
         align-items: flex-start;
     }
 
-    main > div { /* srednji div */
+    main > div, #device-main > div { /* srednji div */
         margin: 0px;
     }
 
