@@ -368,7 +368,7 @@ td {
     margin-top: 10px;
 }
 
-.form-list > input[type="submit"] {
+.form-list > input[type="submit"], .form-buttons {
     margin-top: 20px;
     align-self: flex-end;
 }
