@@ -1,3 +1,5 @@
+/* reset obrob */
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -8,13 +10,54 @@
     outline: none;
 }
 
-.screen-reader {
+.screen-reader { /* skrije element */
     position: absolute;
     clip: rect(1px, 1px, 1px, 1px);
 }
 
 a, a:visited {
     color: #1985A1;
+}
+
+.div-link {
+    text-decoration: none;
+    color: inherit !important;
+}
+
+/* oblikovanje gumbov in linkov, ki zgledajo kot gumbi */
+
+input[type="submit"], .link-button, .link-button:visited {
+    display: inline-block;
+    padding: 0.5em;
+
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+
+    border-top-color: #46494C;
+    border-left-color: #46494C;
+    border-bottom-color: #4C5C68;
+    border-right-color: #4C5C68;
+    background: linear-gradient(135deg, #46494C 0%,#4C5C68 50%);
+
+    color: #DCDCDD !important; /* da povozi default link */
+    text-decoration: none;
+    text-align: center;
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+input[type="submit"]:active, .link-button:active {
+    border-top-color: #4C5C68;
+    border-left-color: #4C5C68;
+    border-bottom-color: #46494C;
+    border-right-color: #46494C;
+    background: linear-gradient(135deg, #4C5C68 0%,#46494C 50%);
+}
+
+input[type="submit"]:hover, .link-button:hover {
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.24), 5px 5px 5px 0 rgba(0,0,0,0.19);
 }
 
 .grow {
@@ -93,7 +136,7 @@ h1 > span {
     margin-left: 20px;
 }
 
-#log-out > form { /* log out button */
+#log-out > .link-button { /* log out button */
     align-self: flex-end;
 }
 
@@ -141,10 +184,6 @@ main, #device-main {
 main > div, #device-main > div { /* srednji div */
     margin-top: 100px;
     margin-bottom: 100px;
-}
-
-#reviews {
-    margin-top: 20px;
 }
 
 .my-list-header {
@@ -234,40 +273,9 @@ main > div, #device-main > div { /* srednji div */
     font-weight: bold;
 }
 
-input[type="submit"] {
-    padding: 0.5em;
-
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 10px;
-
-    border-top-color: #46494C;
-    border-left-color: #46494C;
-    border-bottom-color: #4C5C68;
-    border-right-color: #4C5C68;
-    background: linear-gradient(135deg, #46494C 0%,#4C5C68 50%);
-
-    color: #DCDCDD;
-
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-}
-
-input[type="submit"]:active {
-    border-top-color: #4C5C68;
-    border-left-color: #4C5C68;
-    border-bottom-color: #46494C;
-    border-right-color: #46494C;
-    background: linear-gradient(135deg, #4C5C68 0%,#46494C 50%);
-}
-
-input[type="submit"]:hover {
-    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.24), 5px 5px 5px 0 rgba(0,0,0,0.19);
-}
-
-#add-device-btn {
+#reviews > .link-button { /* gumb add new device */
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 footer {
