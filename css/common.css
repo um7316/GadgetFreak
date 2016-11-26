@@ -452,6 +452,21 @@ dt {
     margin-top: 20px;
 }
 
+textarea {
+    width: 100%;
+    max-width: 100%;
+}
+
+.my-list-comments, .my-list-comments > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-list-comments > form > input[type="submit"] {
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
 @media screen and (min-width: 600px) {
     /* tablets */
 
