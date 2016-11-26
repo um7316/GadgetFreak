@@ -406,13 +406,6 @@ dt {
     align-self: flex-end;
 }
 
-/* ----------- topic ----------- */
-
-#topic-list > li > img {
-    width: 60px;
-    height: 60px;
-}
-
 .aside-border-left {
     /* tukaj je rob na vrhu zaradi mobilnih naprav */
     margin-left: -15px;
@@ -425,6 +418,20 @@ dt {
     align-self: stretch;
 }
 
+/* ----------- register ----------- */
+
+#register {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* ----------- forum ----------- */
+
+#topic-list > li > img {
+    width: 60px;
+    height: 60px;
+}
+
 .topic-info {
     margin-left: 10px;
 }
@@ -434,11 +441,15 @@ dt {
     margin-top: 3px;
 }
 
-/* ----------- register ----------- */
+/* ----------- topic ----------- */
 
-#register {
-    margin-left: 50px;
-    margin-right: 50px;
+#review-score {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.comments {
+    margin-top: 20px;
 }
 
 @media screen and (min-width: 600px) {
