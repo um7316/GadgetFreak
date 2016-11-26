@@ -406,6 +406,13 @@ dt {
     align-self: flex-end;
 }
 
+/* ----------- topic ----------- */
+
+#topic-list > li > img {
+    width: 60px;
+    height: 60px;
+}
+
 .aside-border-left {
     /* tukaj je rob na vrhu zaradi mobilnih naprav */
     margin-left: -15px;
@@ -416,6 +423,15 @@ dt {
     border-top: 3px solid #4C5C68;
 
     align-self: stretch;
+}
+
+.topic-info {
+    margin-left: 10px;
+}
+
+.topic-info > p {
+    font-size: 15px;
+    margin-top: 3px;
 }
 
 /* ----------- register ----------- */

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Gadget Freak - GoAmateur - Device Forum</title>
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<body>
+    <header>
+        <div id="logo-and-title">
+            <img src="images/logo.jpg" id="logo" />
+            <h1><span>G</span>adget<span>F</span>reak</h1>
+        </div>
+
+        <div id="profile-and-search">
+            <form id="search" class="grow" action="search-results.html?search=myphone">
+                <input type="text" class="grow" placeholder="e.g. myphone" required />
+                <label>
+                    <span class="screen-reader">Search</span>
+                </label>
+                <input type="image" src="images/search.png" alt="Submit" />
+            </form>
+            <div id="log-out">
+                <div>
+                    <img src="images/profiles/janezk.png" />
+                    <div>
+                        <span>Janez Kočevar</span>
+                        <a href="profile.html?user=janez">View profile</a>
+                    </div>
+                </div>
+                <form action="index.html">
+                    <input type="submit" value="Log Out" />
+                </form>
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumbs">
+        <a href="index-li.html">Home</a>&nbsp;
+        > <a href="device-info-li.html">GoAmateur</a>&nbsp;
+        > Device Forum
+    </div>
+    <main>
+        <div class="my-list-wrapper grow">
+            <h2 class = "my-list-header">GoAmateur Device Forum:</h2>
+            <ul class="my-list" id="topic-list">
+                <li>
+                    <img src="images/profiles/janezk.png" />
+                    <div class="topic-info">
+                        <a href="topic-li.html?id=1234">Review: Super naprava!</a>
+                        <p>Date: 10-10-2016</p>
+                        <p>Author: janezk</p>
+                    </div>
+                    <div class="device-stats">
+                        <div>5 stars</div>
+                        <div>3 comments</div>
+                    </div>
+                </li>
+                <li>
+                    <img src="images/profiles/janezk.png" />
+                    <div class="topic-info">
+                        <a href="topic-li.html?id=1235">Topic: Ali je GoAmateur primeren za mojo staro mamo?</a>
+                        <p>Date: 9-10-2016</p>
+                        <p>Author: janezk</p>
+                    </div>
+                    <div class="device-stats">
+                        <div>5 stars</div>
+                        <div>3 comments</div>
+                    </div>
+                </li>
+                <li>
+                    <img src="images/profiles/metka.png" />
+                    <div class="topic-info">
+                        <a href="topic-li.html?id=1236">Review: Slika je zanič!</a>
+                        <p>Date: 8-10-2016</p>
+                        <p>Author: metka</p>
+                    </div>
+                    <div class="device-stats">
+                        <div>2 stars</div>
+                        <div>2 comments</div>
+                    </div>
+                </li>
+                <li class="my-list-pagination">
+                    Page 1 of 20
+                    <&nbsp;
+                    1,&nbsp;
+                    <a href="?page=2">2</a>,&nbsp;
+                    <a href="?page=3">3</a>,
+                    ...&nbsp;
+                    <a href="?page=20">20</a>&nbsp;
+                    <a href="?page=2">></a>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <div id="footer-left">
+            &copy; 2016 GadgetFreak
+        </div>
+        <div id="footer-right">
+            Kontakt:<br/>
+            Tel: +386 41 123 456<br />
+            Mail: <a href="mailto:info@gf-not-real.com">info@gf-not-real.com</a>
+        </div>
+    </footer>
+</body>
+
+</html>
