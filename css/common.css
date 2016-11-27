@@ -85,7 +85,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    min-width: 430px;
 
     border: 10px solid #1985A1;
     border-top: none;
