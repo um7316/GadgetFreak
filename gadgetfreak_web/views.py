@@ -31,5 +31,9 @@ def logout_view(request):
     return HttpResponseRedirect(reverse("index"))
 
 def device_info(request, device_id):
-    print(device_id)
-    return render(request, "device-info.html", dict())
+    device = Device.objects.filter(id=device_id).first()
+    if not device:
+        raise Http404
+
+    sp = {"device": device}
+    return render(request, "device-info.html", sp)
