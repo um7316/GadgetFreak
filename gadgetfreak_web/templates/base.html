@@ -10,22 +10,47 @@
 </head>
 <body>
     <header>
-        <a href="index.html" class="div-link">
+        <a href="{% url "index" %}" class="div-link">
             <div id="logo-and-title">
                 <img src="{% static "GadgetFreak/images/logo.jpg" %}" id="logo" alt="logo" />
                 <h1><span>G</span>adget<span>F</span>reak</h1>
             </div>
         </a>
+        {% if not user.is_authenticated %}
         <div id="sign-in">
             <h3>Sign in</h3>
-            <form action="index-li.html" method="post" class="form-list">
-                <label>Username: <input type="text" class="ignore-calc" name="username" required /></label>
-                <label>Password: <input type="password" class="ignore-calc" name="password" required /></label>
+            <form action="{% url "login" %}" method="post" class="form-list">
+                {% csrf_token %}
+                <label>Username: {{ login_form.username }}</label>
+                <label>Password: {{ login_form.password }}</label>
                 <div class = "form-buttons">
                     <a href="register.html">Register</a> or <input type="submit" value="Sign In" />
                 </div>
+                <input type="hidden" name="return_url" value="{{ request.get_full_path }}" />
             </form>
         </div>
+        {% else %}
+        <div id="profile-and-search">
+            <form id="search" class="grow" action="search-results.html" method="get">
+                <input type="text" name="search" class="grow" placeholder="e.g. myphone" required />
+                <label>
+                    <span class="screen-reader">Search</span>
+                </label>
+                <input type="image" src="{% static "GadgetFreak/images/search.png" %}" alt="Submit" />
+            </form>
+            <div id="log-out">
+                <div>
+                    <img src="images/profiles/janezk.png" alt="profile picture" />
+                    <div>
+                        <span>Janez Kočevar</span>
+                        <a href="profile.html?user=janez">View profile</a>
+                    </div>
+                </div>
+                <a href="{% url "logout" %}" class="link-button">Log Out</a>
+                </form>
+            </div>
+        </div>
+        {% endif %}
     </header>
     <div id="breadcrumbs">
         Home
