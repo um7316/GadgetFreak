@@ -12,7 +12,6 @@ from .forms import LoginForm
 def index(request):
     slovar_preslikav = dict()
     slovar_preslikav["devices"] = Device.objects.all()
-    slovar_preslikav["login_form"] = LoginForm()
     return render(request, "landing.html", slovar_preslikav)
 
 def login_view(request):
@@ -30,3 +29,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+def device_info(request, device_id):
+    print(device_id)
+    return render(request, "device-info.html", dict())

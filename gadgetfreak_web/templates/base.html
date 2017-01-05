@@ -1,4 +1,6 @@
 {% load static %}
+{% load tags %}
+
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +23,7 @@
             <h3>Sign in</h3>
             <form action="{% url "login" %}" method="post" class="form-list">
                 {% csrf_token %}
+                {% login_form as login_form %}
                 <label>Username: {{ login_form.username }}</label>
                 <label>Password: {{ login_form.password }}</label>
                 <div class = "form-buttons">

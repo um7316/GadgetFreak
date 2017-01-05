@@ -14,7 +14,7 @@
                         <img src="{{ thumb.url }}" alt="device-thumb" width="{{ thumb.x }}" height="{{ thumb.y }}" style="margin: {{ thumb|margin:"90x90" }}" />
                     {% endthumbnail %}
                     <div class="device-info">
-                        <a href="device-info.html?device={{ device.id }}">{{ device.title }}</a>
+                        <a href="{% url "device_info" device.id %}">{{ device.title }}</a>
                         <p>
                             {{ device.description }}
                         </p>
