@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gadgetfreak_web',
     'django_extensions',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -121,4 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = "/media/"
 MEDIA_ROOT = "/home/urban/Temp/django_upload"
+
+THUMBNAIL_DEBUG = True

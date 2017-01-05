@@ -243,8 +243,7 @@ main > div, #device-main > div { /* srednji div */
 }
 
 #device-list > li > img {
-    width: 90px;
-    height: 90px;
+    border: 10px black;
 }
 
 .device-info {
