@@ -36,4 +36,21 @@ def device_info(request, device_id):
         raise Http404
 
     sp = {"device": device}
+
+    sub_images = {i: e for i, e in enumerate([device.img_1, device.img_2, device.img_3, device.img_4], start=1) if e}
+    img_no = request.GET.get("img", "1")
+    if img_no == "2" and device.img_2:
+        sp["main_img"] = device.img_2
+        del sub_images[2]
+    elif img_no == "3" and device.img_3:
+        sp["main_img"] = device.img_3
+        del sub_images[3]
+    elif img_no == "4" and device.img_4:
+        sp["main_img"] = device.img_4
+        del sub_images[4]
+    else:
+        sp["main_img"] = device.img_1
+        del sub_images[1]
+
+    sp["sub_images"] = sub_images
     return render(request, "device-info.html", sp)
