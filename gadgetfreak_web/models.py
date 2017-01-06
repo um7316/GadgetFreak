@@ -36,3 +36,8 @@ class Device(models.Model):
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
         print("create!")
+
+class TechnicalSpecification(models.Model):
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)

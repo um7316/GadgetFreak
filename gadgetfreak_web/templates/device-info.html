@@ -33,10 +33,9 @@
     <aside id="specifications" class="aside-right">
         <table>
             <tr><th colspan="2">Technical specifications:</th></tr>
-            <tr><td>Resolution:</td><td>1080p</td></tr>
-            <tr><td>Storage:</td><td>64GB</td></tr>
-            <tr><td>Battery:</td><td>1000mAH</td></tr>
-            <tr><td>Inputs:</td><td>Micro HDMI, mini USB, 3.5 stereo mic</td></tr>
+            {% for spec in specs %}
+                <tr><td>{{ spec.name }}:</td><td>{{ spec.value }}</td></tr>
+            {% endfor %}
         </table>
     </aside>
 </main>

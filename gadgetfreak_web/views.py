@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Device
+from .models import Device, TechnicalSpecification
 from .forms import LoginForm
 
 # Create your views here.
@@ -53,4 +53,6 @@ def device_info(request, device_id):
         del sub_images[1]
 
     sp["sub_images"] = sub_images
+
+    sp["specs"] = TechnicalSpecification.objects.filter(device_id=device.id)
     return render(request, "device-info.html", sp)
