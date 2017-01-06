@@ -3,6 +3,10 @@
 {% load tags %}
 
 {% block main %}
+<div id="breadcrumbs">
+    <a href="{% url "index" %}">Home</a>&nbsp;
+    > {{ device.title }}
+</div>
 <main id="device-main">
     <aside id="images" class="aside-left">
         <img id="img-main" data-num="1" src="{{ main_img.url }}" alt="main image" />
