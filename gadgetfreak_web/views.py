@@ -56,3 +56,13 @@ def device_info(request, device_id):
 
     sp["specs"] = TechnicalSpecification.objects.filter(device_id=device.id)
     return render(request, "device-info.html", sp)
+
+
+def device_edit(request, device_id):
+    device = Device.objects.filter(id=device_id).first()
+    if not device:
+        raise Http404
+
+    sp = {"device": device}
+
+    return render(request, "add-device.html", sp)

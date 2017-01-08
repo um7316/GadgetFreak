@@ -7,4 +7,5 @@ urlpatterns = [
 	url(r'^login/$', views.login_view, name="login"),
 	url(r'^logout/$', views.logout_view, name="logout"),
 	url(r'^device/(?P<device_id>[0-9]+)$', views.device_info, name="device_info"),
+	url(r'^device/(?P<device_id>[0-9]+)/edit$', views.device_edit, name="device_edit"),
 ]
