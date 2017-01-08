@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
 from .models import Device, TechnicalSpecification
-from .forms import LoginForm
+from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm
 
 # Create your views here.
 
@@ -63,6 +63,8 @@ def device_edit(request, device_id):
     if not device:
         raise Http404
 
-    sp = {"device": device}
+    sp = {"device": device, "device_form": DeviceForm(instance=device)}
+
+    sp["specs"] = [TechnicalSpecificationForm(instance=ts) for ts in TechnicalSpecification.objects.filter(device_id=device.id)]
 
     return render(request, "add-device.html", sp)

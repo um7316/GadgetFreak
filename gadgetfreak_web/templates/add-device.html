@@ -9,27 +9,26 @@
 <form action="device-info-li.html" method="post" id="device-main">
     <aside id="images" class="aside-left form-list">
         <h2>Images:</h2>
-        <label>Main image:</label><input type="file" name="pic1" accept="image/*" required>
-        <label>Image 2:</label><input type="file" name="pic2" accept="image/*">
-        <label>Image 3:</label><input type="file" name="pic3" accept="image/*">
-        <label>Image 4:</label><input type="file" name="pic4" accept="image/*">
+        <label>Main image:</label>{{ device_form.img_1 }}
+        <label>Image 2:</label>{{ device_form.img_2 }}
+        <label>Image 3:</label>{{ device_form.img_3 }}
+        <label>Image 4:</label>{{ device_form.img_4 }}
     </aside>
     <div id="info" class="grow form-list">
         <div id="device-header">
             <h2>Main info:</h2>
         </div>
-        <label>Title:&nbsp;<input type="text" name="title" class="ignore-calc" required /></label>
+        <label>Title:&nbsp;{{ device_form.title }}</label>
         <label>Description:</label>
-        <textarea name="description" rows="8" required></textarea>
+        {{ device_form.description }}
         <input type="submit" value="Add device" />
     </div>
     <aside id="specifications" class="aside-right aside-border-left">
         <table>
             <tr><th colspan="2">Technical specifications:</th></tr>
-            <tr><td><input type="text" name="spec1" placeholder="specification" size="10" /></td><td><input type="text" name="val1" placeholder="value" size="10" /></td></tr>
-            <tr><td><input type="text" name="spec2" placeholder="specification" size="10" /></td><td><input type="text" name="val2" placeholder="value" size="10" /></td></tr>
-            <tr><td><input type="text" name="spec3" placeholder="specification" size="10" /></td><td><input type="text" name="val3" placeholder="value" size="10" /></td></tr>
-            <tr><td><input type="text" name="spec4" placeholder="specification" size="10" /></td><td><input type="text" name="val4" placeholder="value" size="10" /></td></tr>
+            {% for spec_form in specs %}
+            <tr><td>{{ spec_form.name }}</td><td>{{ spec_form.value }}</td></tr>
+            {% endfor %}
         </table>
     </aside>
 </form>
