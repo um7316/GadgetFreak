@@ -140,3 +140,12 @@ def device_add(request):
     sp = {"device": None, "device_form": DeviceForm(), "specs": ts}
 
     return render(request, "add-device.html", sp)
+
+def device_forum(request, device_id):
+    device = Device.objects.filter(id=device_id).first()
+    if not device:
+        raise Http404
+
+    sp = {"device": device}
+
+    return render(request, "device-forum.html", sp)

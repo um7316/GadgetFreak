@@ -34,7 +34,7 @@
             {% if user.is_authenticated %}
             <a href="{% url "device_edit" device.id %}" class="link-button">Edit device</a>
             {% endif %}
-            <a href="device-forum.html?device=GoAmateur" class="link-button">Device forum</a>
+            <a href="{% url "device_forum" device.id %}" class="link-button">Device forum</a>
         </div>
     </div>
     <aside id="specifications" class="aside-right">
