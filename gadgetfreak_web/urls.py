@@ -8,4 +8,5 @@ urlpatterns = [
 	url(r'^logout/$', views.logout_view, name="logout"),
 	url(r'^device/(?P<device_id>[0-9]+)$', views.device_info, name="device_info"),
 	url(r'^device/(?P<device_id>[0-9]+)/edit$', views.device_edit, name="device_edit"),
+	url(r'^add/$', views.device_add, name="device_add"),
 ]

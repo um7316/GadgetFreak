@@ -64,7 +64,7 @@ def device_edit(request, device_id):
         raise Http404
 
     if request.method == "POST":
-        device_form = DeviceForm(instance=device, data=request.POST)
+        device_form = DeviceForm(request.POST, request.FILES, instance=device)
 
         # check technical specs
         ts = []
@@ -89,9 +89,6 @@ def device_edit(request, device_id):
                     ts_instance.save()
 
             return HttpResponseRedirect(reverse("device_info", kwargs={"device_id": d.id}))
-        else:
-            print(correct, len(ts))
-
 
     else:
         device_form = DeviceForm(instance=device)
@@ -103,5 +100,43 @@ def device_edit(request, device_id):
         ts += [TechnicalSpecificationForm(prefix=str(i)) for i in range(len(ts), fields)]
 
     sp = {"device": device, "device_form": device_form, "specs": ts}
+
+    return render(request, "add-device.html", sp)
+
+def device_add(request):
+    if request.method == "POST":
+        device_form = DeviceForm(request.POST, request.FILES)
+
+        # check technical specs
+        ts = []
+        correct = 0
+        for i in range(100):
+            if str(i)+"-name" not in request.POST:
+                break
+            ts_form = TechnicalSpecificationForm(request.POST, prefix=str(i))
+            if ts_form.is_valid():
+                correct += 1
+            ts.append(ts_form)
+
+        if correct == len(ts) and device_form.is_valid():
+            # vsi podatki so pravilni, lahko shranimo
+            d = device_form.save()
+
+            for tsf in ts:
+                ts_instance = tsf.save(commit=False)
+                if ts_instance.name and ts_instance.value:
+                    ts_instance.device_id = d.id
+                    ts_instance.save()
+
+            return HttpResponseRedirect(reverse("device_info", kwargs={"device_id": d.id}))
+
+    else:
+        device_form = DeviceForm()
+        fields = int(request.GET.get("fields", "4"))
+        if fields > 100:
+            return HttpResponseBadRequest()
+        ts = [TechnicalSpecificationForm(prefix=str(i)) for i in range(fields)]
+
+    sp = {"device": None, "device_form": DeviceForm(), "specs": ts}
 
     return render(request, "add-device.html", sp)

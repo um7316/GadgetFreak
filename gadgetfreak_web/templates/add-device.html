@@ -3,10 +3,14 @@
 {% block main %}
 <div id="breadcrumbs">
     <a href="{% url "index" %}">Home</a>&nbsp;
+    {% if device %}
     > <a href="{% url "device_info" device.id %}">{{ device.title }}</a>&nbsp;
     > Edit device
+    {% else %}
+    > Add device
+    {% endif %}
 </div>
-<form action="#" method="post" id="device-main">
+<form action="#" method="post" id="device-main" enctype="multipart/form-data">
     {% csrf_token %}
     <aside id="images" class="aside-left form-list">
         <h2>Images:</h2>
@@ -22,7 +26,7 @@
         <label>Title:&nbsp;{{ device_form.title }}</label>
         <label>Description:</label>
         {{ device_form.description }}
-        <input type="submit" value="Add device" />
+        <input type="submit" value="{% if device %}Edit{% else %}Add{% endif %} device" />
         {{ device_form.errors }}
     </div>
     <aside id="specifications" class="aside-right aside-border-left">

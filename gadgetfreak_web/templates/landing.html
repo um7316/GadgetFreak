@@ -41,7 +41,10 @@
             </li>
         </ul>
     </div>
-    <aside class="aside-right review-margin" id="reviews">
+    <aside class="aside-right{% if not user.is_authenticated %} review-margin{% endif %}" id="reviews">
+        {% if user.is_authenticated %}
+        <a href="{% url "device_add" %}" class="link-button">Add new device</a>
+        {% endif %}
 
         <div class="my-list-wrapper grow">
             <h3 class = "my-list-header">Latest reviews:</h3>
