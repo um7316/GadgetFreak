@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.dispatch import receiver
 
+from django.utils import timezone
+
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -49,3 +51,23 @@ class TechnicalSpecification(models.Model):
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
+
+def topic_img_path(self, filename):
+    return "images/devices/{}/reviews/{}".format(self.device.title, filename)
+
+class ForumTopic(models.Model):
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+    REVIEW_TYPE = "R"
+    COMMENT_TYPE = "C"
+    TYPE_CHOICES = (
+        (REVIEW_TYPE, "Review"),
+        (COMMENT_TYPE, "Comment")
+    )
+    topic_type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+
+    image = models.ImageField(upload_to=topic_img_path, null=True, blank=True)
+    score = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
+    contents = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
