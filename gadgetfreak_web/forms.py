@@ -18,3 +18,9 @@ class TechnicalSpecificationForm(forms.ModelForm):
         fields = ['name', 'value']
         widgets = {'name': forms.TextInput(attrs={"placeholder": "specification", "size": "10"}),
                    'value': forms.TextInput(attrs={"placeholder": "value", "size": "10"})}
+
+    def __init__(self, *args, **kwargs):
+        super(TechnicalSpecificationForm, self).__init__(*args, **kwargs)
+
+        for fk in self.fields:
+            self.fields[fk].required = False

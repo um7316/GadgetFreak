@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
@@ -63,8 +63,45 @@ def device_edit(request, device_id):
     if not device:
         raise Http404
 
-    sp = {"device": device, "device_form": DeviceForm(instance=device)}
+    if request.method == "POST":
+        device_form = DeviceForm(instance=device, data=request.POST)
 
-    sp["specs"] = [TechnicalSpecificationForm(instance=ts) for ts in TechnicalSpecification.objects.filter(device_id=device.id)]
+        # check technical specs
+        ts = []
+        correct = 0
+        for i in range(100):
+            if str(i)+"-name" not in request.POST:
+                break
+            ts_form = TechnicalSpecificationForm(request.POST, prefix=str(i))
+            if ts_form.is_valid():
+                correct += 1
+            ts.append(ts_form)
+
+        if correct == len(ts) and device_form.is_valid():
+            # vsi podatki so pravilni, lahko shranimo
+            d = device_form.save()
+
+            TechnicalSpecification.objects.filter(device_id=device.id).delete()
+            for tsf in ts:
+                ts_instance = tsf.save(commit=False)
+                if ts_instance.name and ts_instance.value:
+                    ts_instance.device_id = device.id
+                    ts_instance.save()
+
+            return HttpResponseRedirect(reverse("device_info", kwargs={"device_id": d.id}))
+        else:
+            print(correct, len(ts))
+
+
+    else:
+        device_form = DeviceForm(instance=device)
+
+        ts = [TechnicalSpecificationForm(instance=ts, prefix=str(i)) for i, ts in enumerate(TechnicalSpecification.objects.filter(device_id=device.id))]
+        fields = int(request.GET.get("fields", "0")) or len(ts) + 2
+        if fields < len(ts) or fields > 100:
+            return HttpResponseBadRequest()
+        ts += [TechnicalSpecificationForm(prefix=str(i)) for i in range(len(ts), fields)]
+
+    sp = {"device": device, "device_form": device_form, "specs": ts}
 
     return render(request, "add-device.html", sp)

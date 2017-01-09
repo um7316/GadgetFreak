@@ -6,7 +6,8 @@
     > <a href="{% url "device_info" device.id %}">{{ device.title }}</a>&nbsp;
     > Edit device
 </div>
-<form action="device-info-li.html" method="post" id="device-main">
+<form action="#" method="post" id="device-main">
+    {% csrf_token %}
     <aside id="images" class="aside-left form-list">
         <h2>Images:</h2>
         <label>Main image:</label>{{ device_form.img_1 }}
@@ -22,6 +23,7 @@
         <label>Description:</label>
         {{ device_form.description }}
         <input type="submit" value="Add device" />
+        {{ device_form.errors }}
     </div>
     <aside id="specifications" class="aside-right aside-border-left">
         <table>
