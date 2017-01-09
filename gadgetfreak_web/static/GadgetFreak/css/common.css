@@ -472,7 +472,7 @@ input[type="radio"] {
     margin-right: 3px;
 }
 
-input[value="comment"]:checked ~ .hide-if-comment {
+input[value="C"]:checked ~ .hide-if-comment {
     display: none;
 }
 

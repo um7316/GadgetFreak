@@ -65,7 +65,7 @@ class ForumTopic(models.Model):
         (REVIEW_TYPE, "Review"),
         (COMMENT_TYPE, "Comment")
     )
-    topic_type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    topic_type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=COMMENT_TYPE)
 
     image = models.ImageField(upload_to=topic_img_path, null=True, blank=True)
     score = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)

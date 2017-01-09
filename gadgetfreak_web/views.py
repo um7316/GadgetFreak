@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
 from .models import Device, TechnicalSpecification
-from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm
+from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm
 
 # Create your views here.
 
@@ -155,6 +155,12 @@ def add_topic(request, device_id):
     if not device:
         raise Http404
 
-    sp = {"device": device}
+    if request.method == "POST":
+        # do POST
+        pass
+    else:
+        topic_form = ForumTopicForm()
+
+    sp = {"device": device, "topic_form": topic_form}
 
     return render(request, "add-topic.html", sp)

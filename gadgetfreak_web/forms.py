@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Device, TechnicalSpecification
+from .models import Device, TechnicalSpecification, ForumTopic
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Username:", max_length=100, widget=forms.TextInput(attrs={"class": "ignore-calc"}))
@@ -24,3 +24,11 @@ class TechnicalSpecificationForm(forms.ModelForm):
 
         for fk in self.fields:
             self.fields[fk].required = False
+
+class ForumTopicForm(forms.ModelForm):
+    class Meta:
+        model = ForumTopic
+        fields = ['name', 'topic_type', 'image', 'score', 'contents']
+        widgets = {
+            "topic_type": forms.RadioSelect()
+        }
