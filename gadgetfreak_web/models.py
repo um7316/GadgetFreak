@@ -73,3 +73,10 @@ class ForumTopic(models.Model):
     date = models.DateTimeField(default=timezone.now)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Comment(models.Model):
+    contents = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
+
+    forum_topic = models.ForeignKey(ForumTopic, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)

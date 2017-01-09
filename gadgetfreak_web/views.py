@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Device, TechnicalSpecification, ForumTopic
-from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm
+from .models import Device, TechnicalSpecification, ForumTopic, Comment
+from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm, CommentForm
 
 # Create your views here.
 
@@ -180,6 +180,22 @@ def topic(request, device_id, topic_id):
     if not device or not topic:
         raise Http404
 
-    sp = {"device": device, "topic": topic}
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            cf_instance = comment_form.save(commit=False)
+            cf_instance.forum_topic_id = topic.id
+            cf_instance.author_id = request.user.id
+            cf_instance.save()
+            return HttpResponseRedirect(reverse("topic", kwargs={"device_id": device.id, "topic_id": topic.id}))
+    else:
+        comment_form = CommentForm()
+
+    sp = {
+        "device": device,
+        "topic": topic,
+        "comments": Comment.objects.filter(forum_topic_id=topic.id),
+        "comment_form": comment_form
+    }
 
     return render(request, "topic.html", sp)
