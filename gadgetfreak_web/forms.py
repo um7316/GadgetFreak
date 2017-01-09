@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Device, TechnicalSpecification, ForumTopic, Comment
+from .models import Device, TechnicalSpecification, ForumTopic, Comment, UserProfile
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Username:", max_length=100, widget=forms.TextInput(attrs={"class": "ignore-calc"}))
@@ -37,3 +37,8 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['contents']
+
+class UserImageForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_img']

@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.http import Http404
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
-from .models import Device, TechnicalSpecification, ForumTopic, Comment
-from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm, CommentForm
+from .models import Device, TechnicalSpecification, ForumTopic, Comment, UserProfile
+from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm, CommentForm, UserImageForm
 
 # Create your views here.
 
@@ -205,3 +206,42 @@ def topic(request, device_id, topic_id):
     }
 
     return render(request, "topic.html", sp)
+
+def profile(request):
+    if request.method == "POST":
+        if request.FILES.get("profile_img", None):
+            user_image_form = UserImageForm(request.POST, request.FILES)
+            if user_image_form.is_valid():
+                uif_instance = user_image_form.save(commit=False)
+                uif_instance.user_id = request.user.id
+
+                UserProfile.objects.filter(user_id=request.user.id).delete()
+                uif_instance.save()
+                return HttpResponseRedirect(reverse("profile"))
+
+            password_change_form = PasswordChangeForm(user=request.user)
+        elif request.POST.get("old_password", None):
+            password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+            if password_change_form.is_valid():
+                password_change_form.save()
+                update_session_auth_hash(request, password_change_form.user)
+
+                return HttpResponseRedirect(reverse("profile"))
+
+            user_image_form = UserImageForm()
+        else:
+            return HttpResponseBadRequest()
+
+    else:
+        user_image_form = UserImageForm()
+        password_change_form = PasswordChangeForm(user=request.user)
+
+    sp = {
+        "devices_created": Device.objects.filter(author_id=request.user.id).count(),
+        "reviews_posted": ForumTopic.objects.filter(author_id=request.user.id, topic_type="R").count(),
+        "comments_posted": ForumTopic.objects.filter(author_id=request.user.id, topic_type="C").count(),
+
+        "user_image_form": user_image_form,
+        "password_change_form": password_change_form
+    }
+    return render(request, "profile.html", sp)

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div id="breadcrumbs">
+    <a href="index-li.html">Home</a>&nbsp;
+    > Profile
+</div>
+<main id="device-main">
+    <div class="grow">
+        <h2>Your profile:</h2>
+        <div id="profile">
+            <img src="{{ request.user.profile.profile_img.url }}" alt="profile picture" />
+            <div>
+                <h3>Name and surname:</h3>
+                <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                <h3>Username:</h3>
+                <span>{{ request.user.username }}</span>
+            </div>
+        </div>
+        <h2>Statistics:</h2>
+        <dl id="statistics">
+            <dt>Devices created:&nbsp;</dt><dd>{{ devices_created }}</dd>
+            <dt>Reviews posted:&nbsp;</dt><dd>{{ reviews_posted }}</dd>
+            <dt>Comments posted:&nbsp;</dt><dd>{{ comments_posted }}</dd>
+        </dl>
+    </div>
+    <aside class="aside-right aside-border-left">
+        <h2>Change profile picture:</h2>
+        <form action="#" method="post" id="upload-profile-pic-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Choose new picture:</label>
+            {{ user_image_form.profile_img }}
+            <input type="submit" value="Upload" />
+        </form>
+        <h2>Change password:</h2>
+        <form action="#" method="post" class="form-list">
+            {% csrf_token %}
+            {{ password_change_form }}
+            <input type="submit" value="Change password" />
+        </form>
+    </aside>
+</main>
+{% endblock %}
