@@ -14,7 +14,7 @@
             <li>
                 <img src="{{ topic.author.profile.profile_img.url }}" alt="profile picture" />
                 <div class="topic-info">
-                    <a href="topic-li.html?id=1234">{{ topic.get_topic_type_display }}: {{ topic.name }}</a>
+                    <a href="{% url "topic" device.id topic.id %}">{{ topic.get_topic_type_display }}: {{ topic.name }}</a>
                     <p>Date: {{ topic.date }}</p>
                     <p>Author: {{ topic.author.username }}</p>
                 </div>

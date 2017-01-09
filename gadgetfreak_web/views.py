@@ -173,3 +173,13 @@ def add_topic(request, device_id):
     sp = {"device": device, "topic_form": topic_form}
 
     return render(request, "add-topic.html", sp)
+
+def topic(request, device_id, topic_id):
+    device = Device.objects.filter(id=device_id).first()
+    topic = ForumTopic.objects.filter(id=topic_id).first()
+    if not device or not topic:
+        raise Http404
+
+    sp = {"device": device, "topic": topic}
+
+    return render(request, "topic.html", sp)
