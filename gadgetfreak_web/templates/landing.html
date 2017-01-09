@@ -23,9 +23,9 @@
                         </p>
                     </div>
                     <div class="device-stats">
-                        <div>4.6 stars</div>
-                        <div>15 reviews</div>
-                        <div>24 comments</div>
+                        <div>{{ device.get_score }} stars</div>
+                        <div>{{ device.get_no_reviews }} reviews</div>
+                        <div>{{ device.get_no_comments }} comments</div>
                     </div>
                 </li>
             {% endfor %}
@@ -49,36 +49,18 @@
         <div class="my-list-wrapper grow">
             <h3 class = "my-list-header">Latest reviews:</h3>
             <ul class="my-list" id="review-list">
+                {% for review in reviews %}
                 <li>
-                    <img src="images/devices/GoAmateur/thumb.png" alt="device-thumb" />
+                    <img src="{{ review.author.profile.profile_img.url }}" alt="profile-pic" />
                     <div class="review-info">
-                        <a href="topic.html?id=1234">GoAmateur</a>
+                        <a href="{% url "topic" review.device.id review.id %}">{{ review.device.title }} - {{ review.name }}</a>
                         <div>
-                            5 stars <br />
-                            Author: Janez
+                            {{ review.score }} stars <br />
+                            Author: {{ review.author.username }}
                         </div>
                     </div>
                 </li>
-                <li>
-                    <img src="images/devices/GoAmateur/thumb.png" alt="device-thumb" />
-                    <div class="review-info">
-                        <a href="topic.html?id=1234">GoAmateur</a>
-                        <div>
-                            2 stars <br />
-                            Author: Metka
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/devices/MyPhone/thumb.png" alt="device-thumb" />
-                    <div class="review-info">
-                        <a href="topic.html?id=1234">MyPhone</a>
-                        <div>
-                            3 stars <br />
-                            Author: Janez
-                        </div>
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
         </div>
     </aside>

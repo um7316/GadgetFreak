@@ -20,9 +20,9 @@
                 </div>
                 <div class="device-stats">
                     {% if topic.topic_type == "R" %}
-                    <div>5 stars</div>
+                    <div>{{ topic.score }} stars</div>
                     {% endif %}
-                    <div>3 comments</div>
+                    <div>{{ topic.get_no_comments }} comments</div>
                 </div>
             </li>
             {% endfor %}

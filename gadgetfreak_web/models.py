@@ -42,6 +42,21 @@ class Device(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     score = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
 
+    def get_score(self):
+        q = ForumTopic.objects.filter(topic_type="R", device_id=self.id)
+        if q.count() == 0:
+            return 0
+
+        total = sum(res.score for res in q)
+
+        return total / q.count()
+
+    def get_no_reviews(self):
+        return ForumTopic.objects.filter(topic_type="R", device_id=self.id).count()
+
+    def get_no_comments(self):
+        return ForumTopic.objects.filter(topic_type="C", device_id=self.id).count()
+
 @receiver(models.signals.post_save, sender=Device)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
@@ -73,6 +88,9 @@ class ForumTopic(models.Model):
     date = models.DateTimeField(default=timezone.now)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def get_no_comments(self):
+        return Comment.objects.filter(forum_topic_id=self.id).count()
 
 class Comment(models.Model):
     contents = models.TextField()

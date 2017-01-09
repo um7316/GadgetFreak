@@ -4,8 +4,8 @@
 <div id="breadcrumbs">
     <a href="{% url "index" %}">Home</a>&nbsp;
     > <a href="{% url "device_info" device.id %}">{{ device.title }}</a>&nbsp;
-    > <a href="{% url "device_forum" device.id %}">Device Forum</a>&nbsp;
-    > Review
+    > <a href="{% url "device_forum" device.id %}">{{ device.title }} Forum</a>&nbsp;
+    > {{ topic.name }}
 </div>
 <main id="device-main">
     <aside id="images" class="aside-left">

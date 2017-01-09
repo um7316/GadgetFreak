@@ -10,9 +10,11 @@ from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopic
 # Create your views here.
 
 def index(request):
-    slovar_preslikav = dict()
-    slovar_preslikav["devices"] = Device.objects.all()
-    return render(request, "landing.html", slovar_preslikav)
+    sp = {
+        "devices": Device.objects.all(),
+        "reviews": ForumTopic.objects.filter(topic_type="R").order_by("-date")[:5]
+    }
+    return render(request, "landing.html", sp)
 
 def login_view(request):
     if request.method == "POST" and request.POST["return_url"]:
@@ -146,7 +148,11 @@ def device_forum(request, device_id):
     if not device:
         raise Http404
 
-    sp = {"device": device, "topics": ForumTopic.objects.filter(device_id=device.id)}
+    topics = ForumTopic.objects.filter(device_id=device.id)
+    for topic in topics:
+        topic.comments_no = Comment.objects.filter(forum_topic_id=topic.id).count()
+
+    sp = {"device": device, "topics": topics}
 
     return render(request, "device-forum.html", sp)
 
