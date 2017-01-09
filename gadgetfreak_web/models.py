@@ -71,3 +71,5 @@ class ForumTopic(models.Model):
     score = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
     contents = models.TextField()
     date = models.DateTimeField(default=timezone.now)
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE)

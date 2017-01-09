@@ -10,7 +10,7 @@
 <main id="device-main" class="register-main">
     <div id="add-topic">
         <h2>Add a new topic</h2>
-        <form action="#" method="post" class="form-list">
+        <form action="#" method="post" class="form-list" enctype="multipart/form-data">
             {% csrf_token %}
             <label>Topic&nbsp;name:&nbsp;{{ topic_form.name }}</label>
             <label>Topic type:</label>

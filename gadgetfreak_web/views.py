@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Device, TechnicalSpecification
+from .models import Device, TechnicalSpecification, ForumTopic
 from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm
 
 # Create your views here.
@@ -146,7 +146,7 @@ def device_forum(request, device_id):
     if not device:
         raise Http404
 
-    sp = {"device": device}
+    sp = {"device": device, "topics": ForumTopic.objects.filter(device_id=device.id)}
 
     return render(request, "device-forum.html", sp)
 
@@ -156,8 +156,17 @@ def add_topic(request, device_id):
         raise Http404
 
     if request.method == "POST":
-        # do POST
-        pass
+        topic_form = ForumTopicForm(request.POST, request.FILES)
+        if topic_form.is_valid():
+            ft_instance = topic_form.save(commit=False)
+            if ft_instance.topic_type == ft_instance.COMMENT_TYPE or \
+                    ft_instance.image and ft_instance.score:
+                ft_instance.device_id = device.id
+                ft_instance.author_id = request.user.id
+                ft_instance.save()
+                return HttpResponseRedirect(reverse("device_forum", kwargs={"device_id": device.id}))
+            else:
+                print(ft_instance.image, ft_instance.score)
     else:
         topic_form = ForumTopicForm()
 
