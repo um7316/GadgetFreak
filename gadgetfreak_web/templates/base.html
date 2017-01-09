@@ -43,9 +43,9 @@
             </form>
             <div id="log-out">
                 <div>
-                    <img src="images/profiles/janezk.png" alt="profile picture" />
+                    <img src="{{ user.profile.profile_img.url }}" alt="profile picture" />
                     <div>
-                        <span>Janez Kočevar</span>
+                        <span>{{ user.first_name }} {{ user.last_name }}</span>
                         <a href="profile.html?user=janez">View profile</a>
                     </div>
                 </div>

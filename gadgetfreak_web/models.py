@@ -6,6 +6,14 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+def profile_img_path(self, filename):
+    return "images/profiles/{}/{}".format(self.user.username, filename)
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, related_name="profile")
+    profile_img = models.ImageField(upload_to=profile_img_path, null=False, blank=False)
+
 def image1_path(self, filename):
     return "images/devices/{}/1".format(self.title)
 
