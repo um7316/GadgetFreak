@@ -4,6 +4,9 @@ from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
+from django.db.models import Q
+
+import re
 
 from .models import Device, TechnicalSpecification, ForumTopic, Comment, UserProfile
 from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm, CommentForm, UserImageForm
@@ -265,3 +268,76 @@ def register(request):
         "user_image_form": user_image_form
     }
     return render(request, "register.html", sp)
+
+def search(request):
+    query_string = ''
+    found_entries = None
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+
+        entry_query = get_query(query_string, ['title', 'description',])
+
+        found_entries = Device.objects.filter(entry_query)
+
+        sp = { 'query_string': query_string, 'found_entries': found_entries }
+        print(found_entries)
+
+        return render(request, 'search.html', sp)
+    elif ('q' in request.GET):
+        return HttpResponseRedirect(reverse("index"))
+    else:
+        return HttpResponseBadRequest()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def normalize_query(query_string,
+                    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+                    normspace=re.compile(r'\s{2,}').sub):
+    ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
+        and grouping quoted words together.
+        Example:
+
+        >>> normalize_query('  some random  words "with   quotes  " and   spaces')
+        ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
+
+    '''
+    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)]
+
+def get_query(query_string, search_fields):
+    ''' Returns a query, that is a combination of Q objects. That combination
+        aims to search keywords within a model by testing the given search fields.
+
+    '''
+    query = None # Query to search for every search term
+    terms = normalize_query(query_string)
+    for term in terms:
+        or_query = None # Query to search for a given term in each field
+        for field_name in search_fields:
+            q = Q(**{"%s__icontains" % field_name: term})
+            if or_query is None:
+                or_query = q
+            else:
+                or_query = or_query | q
+        if query is None:
+            query = or_query
+        else:
+            query = query & or_query
+    return query

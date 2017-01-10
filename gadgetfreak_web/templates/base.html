@@ -34,8 +34,8 @@
         </div>
         {% else %}
         <div id="profile-and-search">
-            <form id="search" class="grow" action="search-results.html" method="get">
-                <input type="text" name="search" class="grow" placeholder="e.g. myphone" required />
+            <form id="search" class="grow" action="{% url "search" %}" method="get">
+                <input type="text" name="q" class="grow" placeholder="e.g. myphone" required />
                 <label>
                     <span class="screen-reader">Search</span>
                 </label>
