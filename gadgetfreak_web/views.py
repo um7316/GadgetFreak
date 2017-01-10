@@ -19,7 +19,7 @@ def index(request):
     }
 
     offset = int(request.GET.get("offset", "0"))
-    q = Device.objects.all()
+    q = sorted(Device.objects.all(), key=lambda e: -e.get_score())
     try:
         pagination = make_pagination(q, offset, list_name="devices")
     except:
@@ -334,7 +334,10 @@ def search(request):
 
 
 def make_pagination(query, offset, list_name="objects"):
-    objs = query.count()
+    if type(query) == list:
+        objs = len(query)
+    else:
+        objs = query.count()
     if objs == 0:
         return dict()
     if offset >= objs or offset%5 != 0:
