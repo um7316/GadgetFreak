@@ -27,7 +27,7 @@
                 <label>Username: {{ login_form.username }}</label>
                 <label>Password: {{ login_form.password }}</label>
                 <div class = "form-buttons">
-                    <a href="register.html">Register</a> or <input type="submit" value="Sign In" />
+                    <a href="{% url "register" %}">Register</a> or <input type="submit" value="Sign In" />
                 </div>
                 <input type="hidden" name="return_url" value="{{ request.get_full_path }}" />
             </form>
@@ -45,7 +45,7 @@
                 <div>
                     <img src="{{ user.profile.profile_img.url }}" alt="profile picture" />
                     <div>
-                        <span>{{ user.first_name }} {{ user.last_name }}</span>
+                        <span>{{ user.username }}</span>
                         <a href="{% url "profile" %}">View profile</a>
                     </div>
                 </div>

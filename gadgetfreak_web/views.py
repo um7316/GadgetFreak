@@ -3,7 +3,7 @@ from django.http import Http404
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 
 from .models import Device, TechnicalSpecification, ForumTopic, Comment, UserProfile
 from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm, CommentForm, UserImageForm
@@ -245,3 +245,23 @@ def profile(request):
         "password_change_form": password_change_form
     }
     return render(request, "profile.html", sp)
+
+def register(request):
+    if request.method == "POST":
+        user_creation_form = UserCreationForm(request.POST)
+        user_image_form = UserImageForm(request.POST, request.FILES)
+        if user_creation_form.is_valid() and user_image_form.is_valid():
+            u = user_creation_form.save()
+            ui = user_image_form.save(commit=False)
+            ui.user = u
+            ui.save()
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        user_creation_form = UserCreationForm()
+        user_image_form = UserImageForm()
+
+    sp = {
+        "user_creation_form": user_creation_form,
+        "user_image_form": user_image_form
+    }
+    return render(request, "register.html", sp)

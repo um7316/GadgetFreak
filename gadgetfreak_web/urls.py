@@ -7,6 +7,7 @@ urlpatterns = [
 	url(r'^login/$', views.login_view, name="login"),
 	url(r'^logout/$', views.logout_view, name="logout"),
 	url(r'^profile/$', views.profile, name="profile"),
+	url(r'^register/$', views.register, name="register"),
 	url(r'^device/(?P<device_id>[0-9]+)$', views.device_info, name="device_info"),
 	url(r'^device/(?P<device_id>[0-9]+)/forum$', views.device_forum, name="device_forum"),
 	url(r'^device/(?P<device_id>[0-9]+)/forum/(?P<topic_id>[0-9]+)$', views.topic, name="topic"),
