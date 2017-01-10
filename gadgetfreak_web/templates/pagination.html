@@ -1,0 +1,11 @@
+{% if page %}
+    &lt;
+    {% for pp in prev_pages %}
+        <a href="?offset={{ pp.1 }}">{{ pp.0 }}</a>&nbsp;,
+    {% endfor %}
+    {{ page }}
+    {% for np in next_pages %}
+        ,&nbsp;<a href="?offset={{ np.1 }}">{{ np.0 }}</a>
+    {% endfor %}
+    &gt;
+{% endif %}

@@ -29,14 +29,7 @@
                 </li>
             {% endfor %}
             <li class="my-list-pagination">
-                Page 1 of 20
-                &lt;&nbsp;
-                1,&nbsp;
-                <a href="?page=2">2</a>,&nbsp;
-                <a href="?page=3">3</a>,
-                ...&nbsp;
-                <a href="?page=20">20</a>&nbsp;
-                <a href="?page=2">></a>
+                {% include "pagination.html" %}
             </li>
         </ul>
     </div>

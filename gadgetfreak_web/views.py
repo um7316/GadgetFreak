@@ -15,9 +15,17 @@ from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopic
 
 def index(request):
     sp = {
-        "devices": Device.objects.all(),
         "reviews": ForumTopic.objects.filter(topic_type="R").order_by("-date")[:5]
     }
+
+    offset = int(request.GET.get("offset", "0"))
+    q = Device.objects.all()
+    try:
+        pagination = make_pagination(q, offset, list_name="devices")
+    except:
+        return HttpResponseBadRequest()
+    sp.update(pagination)
+
     return render(request, "landing.html", sp)
 
 def login_view(request):
@@ -152,11 +160,18 @@ def device_forum(request, device_id):
     if not device:
         raise Http404
 
-    topics = ForumTopic.objects.filter(device_id=device.id)
-    for topic in topics:
-        topic.comments_no = Comment.objects.filter(forum_topic_id=topic.id).count()
+    sp = {"device": device}
 
-    sp = {"device": device, "topics": topics}
+    offset = int(request.GET.get("offset", "0"))
+    q = ForumTopic.objects.filter(device_id=device.id).order_by("date")
+    try:
+        pagination = make_pagination(q, offset, list_name="topics")
+    except:
+        return HttpResponseBadRequest()
+    sp.update(pagination)
+
+    for topic in sp["topics"]:
+        topic.comments_no = Comment.objects.filter(forum_topic_id=topic.id).count()
 
     return render(request, "device-forum.html", sp)
 
@@ -204,9 +219,16 @@ def topic(request, device_id, topic_id):
     sp = {
         "device": device,
         "topic": topic,
-        "comments": Comment.objects.filter(forum_topic_id=topic.id),
-        "comment_form": comment_form
+        "comment_form": comment_form,
     }
+
+    offset = int(request.GET.get("offset", "0"))
+    q = Comment.objects.filter(forum_topic_id=topic.id).order_by("date")
+    try:
+        pagination = make_pagination(q, offset, list_name="comments")
+    except:
+        return HttpResponseBadRequest()
+    sp.update(pagination)
 
     return render(request, "topic.html", sp)
 
@@ -277,10 +299,15 @@ def search(request):
 
         entry_query = get_query(query_string, ['title', 'description',])
 
-        found_entries = Device.objects.filter(entry_query)
+        sp = { 'query_string': query_string }
 
-        sp = { 'query_string': query_string, 'found_entries': found_entries }
-        print(found_entries)
+        offset = int(request.GET.get("offset", "0"))
+        q = Device.objects.filter(entry_query)
+        try:
+            pagination = make_pagination(q, offset, list_name="found_entries")
+        except:
+            return HttpResponseBadRequest()
+        sp.update(pagination)
 
         return render(request, 'search.html', sp)
     elif ('q' in request.GET):
@@ -306,7 +333,25 @@ def search(request):
 
 
 
+def make_pagination(query, offset, list_name="objects"):
+    objs = query.count()
+    if objs == 0:
+        return dict()
+    if offset >= objs or offset%5 != 0:
+        raise Exception("Bad request")
 
+    page = offset/5 + 1
+    prev_pages = list(enumerate(range(0, offset, 5), start=1))
+    next_pages = list(enumerate(range(offset+5, objs, 5), start=page+1))
+
+    d = {
+        list_name: query[offset:offset+5],
+        "page": page,
+        "next_pages": next_pages,
+        "prev_pages": prev_pages,
+    }
+
+    return d
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
