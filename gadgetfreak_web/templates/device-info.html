@@ -9,12 +9,12 @@
 </div>
 <main id="device-main">
     <aside id="images" class="aside-left">
-        <img id="img-main" data-num="1" src="{{ main_img.url }}" alt="main image" />
+        <img id="img-main" data-num="1" src="{{ main_img.url }}" alt="main image" width=280 height=420 />
 
         <div>
             {% for si in sub_images %}
                 <a class="img-link" href="{% url "device_info" device.id %}?img={{ si }}">
-                <img data-num="{{ si }}" src="{{ sub_images|get_subimage_url:si }}" alt="thumbnail" width="90px" height="90px" /></a>
+                <img data-num="{{ si }}" src="{{ sub_images|get_subimage_url:si }}" alt="thumbnail" width="90" height="90" /></a>
             {% endfor %}
         </div>
     </aside>

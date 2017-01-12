@@ -14,7 +14,7 @@
     <header>
         <a href="{% url "index" %}" class="div-link">
             <div id="logo-and-title">
-                <img src="{% static "GadgetFreak/images/logo.jpg" %}" id="logo" alt="logo" />
+                <img src="{% static "GadgetFreak/images/logo.jpg" %}" id="logo" alt="logo" width=160 height=160 />
                 <h1><span>G</span>adget<span>F</span>reak</h1>
             </div>
         </a>
@@ -43,7 +43,7 @@
             </form>
             <div id="log-out">
                 <div>
-                    <img src="{{ user.profile.profile_img.url }}" alt="profile picture" />
+                    <img src="{{ user.profile.profile_img.url }}" alt="profile picture" width=60 height=60 />
                     <div>
                         <span>{{ user.username }}</span>
                         <a href="{% url "profile" %}">View profile</a>

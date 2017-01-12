@@ -43,7 +43,7 @@
             <ul class="my-list" id="review-list">
                 {% for review in reviews %}
                 <li>
-                    <img src="{{ review.author.profile.profile_img.url }}" alt="profile-pic" />
+                    <img src="{{ review.author.profile.profile_img.url }}" alt="profile-pic" width=60 height=60 />
                     <div class="review-info">
                         <a href="{% url "topic" review.device.id review.id %}">{{ review.device.title }} - {{ review.name }}</a>
                         <div>

@@ -12,7 +12,7 @@
         <ul class="my-list" id="topic-list">
             {% for topic in topics %}
             <li>
-                <img src="{{ topic.author.profile.profile_img.url }}" alt="profile picture" />
+                <img src="{{ topic.author.profile.profile_img.url }}" alt="profile picture" width=60 height=60 />
                 <div class="topic-info">
                     <a href="{% url "topic" device.id topic.id %}">{{ topic.get_topic_type_display }}: {{ topic.name }}</a>
                     <p>Date: {{ topic.date }}</p>

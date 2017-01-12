@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'gadgetfreak_web',
     'django_extensions',
     'sorl.thumbnail',
+    'django_unused_media',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
