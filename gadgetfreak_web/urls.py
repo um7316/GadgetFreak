@@ -15,4 +15,5 @@ urlpatterns = [
 	url(r'^device/(?P<device_id>[0-9]+)/forum/add$', views.add_topic, name="add_topic"),
 	url(r'^device/(?P<device_id>[0-9]+)/edit$', views.device_edit, name="device_edit"),
 	url(r'^add/$', views.device_add, name="device_add"),
+	url(r'^not_authorized/$', views.not_authorized, name="not_authorized")
 ]

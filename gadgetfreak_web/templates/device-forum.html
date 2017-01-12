@@ -27,7 +27,11 @@
             </li>
             {% endfor %}
             <li class="my-list-comments">
+                {% if user.is_authenticated %}
                 <a href="{% url "add_topic" device.id %}" class="link-button">Add review or comment</a>
+                {% else %}
+                <p>Log in to post your comment or review</p>
+                {% endif %}
             </li>
             <li class="my-list-pagination">
                 {% include "pagination.html" %}

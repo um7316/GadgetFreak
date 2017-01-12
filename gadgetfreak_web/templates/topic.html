@@ -43,12 +43,16 @@
         </li>
         {% endfor %}
         <li class="my-list-comments">
+            {% if user.is_authenticated %}
             <h3>Submit your comment:</h3>
             <form action="#" method="post">
                 {% csrf_token %}
                 {{ comment_form.contents }}
                 <input type="submit" value="Comment" />
             </form>
+            {% else %}
+            <p>Log in to post your comment.</p>
+            {% endif %}
         </li>
         <li class="my-list-pagination">
             {% include "pagination.html" %}

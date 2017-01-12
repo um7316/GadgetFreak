@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
 import re
@@ -71,7 +72,7 @@ def device_info(request, device_id):
     sp["specs"] = TechnicalSpecification.objects.filter(device_id=device.id)
     return render(request, "device-info.html", sp)
 
-
+@login_required(redirect_field_name=None, login_url="not_authorized")
 def device_edit(request, device_id):
     device = Device.objects.filter(id=device_id).first()
     if not device:
@@ -117,6 +118,7 @@ def device_edit(request, device_id):
 
     return render(request, "add-device.html", sp)
 
+@login_required(redirect_field_name=None, login_url="not_authorized")
 def device_add(request):
     if request.method == "POST":
         device_form = DeviceForm(request.POST, request.FILES)
@@ -170,11 +172,12 @@ def device_forum(request, device_id):
         return HttpResponseBadRequest()
     sp.update(pagination)
 
-    for topic in sp["topics"]:
+    for topic in sp.get("topics", []):
         topic.comments_no = Comment.objects.filter(forum_topic_id=topic.id).count()
 
     return render(request, "device-forum.html", sp)
 
+@login_required(redirect_field_name=None, login_url="not_authorized")
 def add_topic(request, device_id):
     device = Device.objects.filter(id=device_id).first()
     if not device:
@@ -205,7 +208,7 @@ def topic(request, device_id, topic_id):
     if not device or not topic:
         raise Http404
 
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated():
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             cf_instance = comment_form.save(commit=False)
@@ -232,6 +235,7 @@ def topic(request, device_id, topic_id):
 
     return render(request, "topic.html", sp)
 
+@login_required(redirect_field_name=None, login_url="not_authorized")
 def profile(request):
     if request.method == "POST":
         if request.FILES.get("profile_img", None):
@@ -291,6 +295,7 @@ def register(request):
     }
     return render(request, "register.html", sp)
 
+@login_required(redirect_field_name=None, login_url="not_authorized")
 def search(request):
     query_string = ''
     found_entries = None
@@ -315,7 +320,8 @@ def search(request):
     else:
         return HttpResponseBadRequest()
 
-
+def not_authorized(request):
+    return HttpResponse("Unauthorized", status=401)
 
 
 
