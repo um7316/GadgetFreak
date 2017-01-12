@@ -38,7 +38,6 @@ class Device(models.Model):
     img_2 = models.ImageField(upload_to=image2_path, null=True, blank=True)
     img_3 = models.ImageField(upload_to=image3_path, null=True, blank=True)
     img_4 = models.ImageField(upload_to=image4_path, null=True, blank=True)
-    img_thumb = models.ImageField(upload_to=image_thumb_path, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     score = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
 
