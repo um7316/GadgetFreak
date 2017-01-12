@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpRespon
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 
 import re
@@ -319,6 +319,16 @@ def search(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return HttpResponseBadRequest()
+
+@permission_required("gadgetfreak_web.delete_device", login_url="not_authorized")
+def device_delete(request, device_id):
+    device = Device.objects.filter(id=device_id).first()
+    if not device:
+        raise Http404
+
+    device.delete()
+
+    return HttpResponseRedirect(reverse("index"))
 
 def not_authorized(request):
     return HttpResponse("Unauthorized", status=401)

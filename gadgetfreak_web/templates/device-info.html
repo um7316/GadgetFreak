@@ -36,6 +36,11 @@
             {% endif %}
             <a href="{% url "device_forum" device.id %}" class="link-button">Device forum</a>
         </div>
+        <div class="button-wrapper">
+            {% if perms.gadgetfreak_web.delete_device %}
+            <a href="{% url "device_delete" device.id %}" class="link-button">Delete device</a>
+            {% endif %}
+        </div>
     </div>
     <aside id="specifications" class="aside-right">
         <table>
