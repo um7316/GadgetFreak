@@ -32,5 +32,5 @@ before_script:
 
 script:
   - python manage.py migrate
-  - echo "from django.contrib.auth.models import User; u = User.objects.create_superuser('admin', 'admin@example.com', 'pass'); print(u.id)" | python manage.py shell
+  - echo "from django.contrib.auth.models import User; u = User.objects.create_superuser('admin', 'admin@example.com', 'pass'); print(u.id); u.save()" | python manage.py shell
   - python manage.py test
