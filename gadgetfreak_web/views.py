@@ -17,6 +17,15 @@ from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopic
 logger = logging.getLogger(__name__)
 
 def index(request):
+    """Django view function for landing page
+
+    Displays 5 newest reviews and devices, sorted by user score.
+    The devices are paginated, pagination uses GET parameter 'offset'.
+    If offset is set incorrectly, returns html error bad request.
+
+    Keyword arguments:
+    request -- django request object
+    """
     sp = {
         "reviews": ForumTopic.objects.filter(topic_type="R").order_by("-date")[:5]
     }
@@ -32,6 +41,16 @@ def index(request):
     return render(request, "landing.html", sp)
 
 def login_view(request):
+    """Django view function for login page
+
+    View accepts POST requests, in case of other types returns html error 404.
+    It checks, if login form, sent in request, is valid and proceeds to login
+    the user. If form validation or authentication fails, it redirects user to
+    return url, sent in request.
+
+    Keyword arguments:
+    request -- django request object
+    """
     if request.method == "POST" and request.POST["return_url"]:
         # request.POST -> slovar vsebine
         lf = LoginForm(request.POST)
@@ -44,10 +63,29 @@ def login_view(request):
         raise Http404
 
 def logout_view(request):
+    """Django view function for logout page
+
+    View removes session from user, logging him out.
+    After logout, user is redirected to landing page.
+
+    Keyword arguments:
+    request -- django request object
+    """
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 def device_info(request, device_id):
+    """Django view function for device info page
+
+    Checks if device id, sent in the argument, is valid. Otherwise returns 404 error.
+    After that, it sets the main image of the view to the id, supplied in GET
+    parameter 'img' or 1, if parameter is not present. Other images are set as
+    subimages. It also returns all the technical specifications of the device.
+
+    Keyword arguments:
+    request -- django request object
+    device_id -- device id to render
+    """
     device = Device.objects.filter(id=device_id).first()
     if not device:
         raise Http404
@@ -76,6 +114,21 @@ def device_info(request, device_id):
 
 @login_required(redirect_field_name=None, login_url="not_authorized")
 def device_edit(request, device_id):
+    """Django view function for devic editing page
+
+    Checks if device id, sent in the argument, is valid. Otherwise returns 404 error.
+    Creates correct form, used for editing the device. User can specify number of
+    technical specification fields using GET parameter 'fields'. If parameter is set
+    incorrectly, view returns html error bad request. If request is using method POST,
+    this function checks, if set data is valid. If it is valid it saves the data and
+    redirects user to edited device info page. Otherwise it displays device edit page again.
+
+    User must be logged in to use this view.
+
+    Keyword arguments:
+    request -- django request object
+    device_id -- device_id of device to edit
+    """
     device = Device.objects.filter(id=device_id).first()
     if not device:
         raise Http404
@@ -122,6 +175,19 @@ def device_edit(request, device_id):
 
 @login_required(redirect_field_name=None, login_url="not_authorized")
 def device_add(request):
+    """Django view function for adding a device
+
+    Creates form, used for adding a device. User can specify number of
+    technical specification fields using GET parameter 'fields'. If parameter is set
+    incorrectly, view returns html error bad request. If request is using method POST,
+    this function checks, if set data is valid. If it is valid it saves the data and
+    redirects user to added device info page. Otherwise it displays device add page again.
+
+    User must be logged in to use this view.
+
+    Keyword arguments:
+    request -- django request object
+    """
     if request.method == "POST":
         device_form = DeviceForm(request.POST, request.FILES)
 
@@ -160,6 +226,18 @@ def device_add(request):
     return render(request, "add-device.html", sp)
 
 def device_forum(request, device_id):
+    """Django view function for displaying device forum
+
+    Checks if device id, sent in the argument, is valid. Otherwise returns 404 error.
+    Displays all forum topics, created for the supplied device. It also uses pagination
+    for displaying them. GET parameter, used for pagination is 'offset' and if set
+    incorrectly, this view returns html error bad request. Topics are ordered by
+    published date.
+
+    Keyword arguments:
+    request -- django request object
+    device_id -- id of the device of which forum should be displayed
+    """
     device = Device.objects.filter(id=device_id).first()
     if not device:
         raise Http404
@@ -181,6 +259,17 @@ def device_forum(request, device_id):
 
 @login_required(redirect_field_name=None, login_url="not_authorized")
 def add_topic(request, device_id):
+    """Django view for page for adding forum topic
+
+    Checks if device id, sent in the argument, is valid. Otherwise returns 404 error.
+    Displays form for adding a forum topic. If request method is POST it checks,
+    if sent form is valid and if it is, it saves the topic and redirects user to
+    device forum page. Otherwise it displays form for adding the topic again.
+
+    Keyword arguments:
+    request -- django request object
+    device_id -- device id of which the topic will be added
+    """
     device = Device.objects.filter(id=device_id).first()
     if not device:
         raise Http404
@@ -195,8 +284,6 @@ def add_topic(request, device_id):
                 ft_instance.author_id = request.user.id
                 ft_instance.save()
                 return HttpResponseRedirect(reverse("device_forum", kwargs={"device_id": device.id}))
-            else:
-                print(ft_instance.image, ft_instance.score)
     else:
         topic_form = ForumTopicForm()
 
@@ -205,6 +292,23 @@ def add_topic(request, device_id):
     return render(request, "add-topic.html", sp)
 
 def topic(request, device_id, topic_id):
+    """Django view for displaying forum topic
+
+    Checks if device id and forum topic id, sent in the argument, is valid.
+    Otherwise returns 404 error. Displays the forum topic page with all comments.
+    The comments are paginated. Pagination uses GET parameter 'offset'. If it is set
+    incorrectly, view returns html error bad request. Page also supplies form for
+    adding a comment to the topic. If request uses POST method, it checks if supplied
+    comment form is valid and if it is, it redirects user to the topic page.
+    Otherwise it displays same comment form again.
+
+    User can add comment only, if he is logged in.
+
+    Keyword arguments:
+    request -- django request object
+    device_id -- device id of forum to display
+    topic_id -- topic id of topic to display
+    """
     device = Device.objects.filter(id=device_id).first()
     topic = ForumTopic.objects.filter(id=topic_id).first()
     if not device or not topic:
@@ -239,6 +343,18 @@ def topic(request, device_id, topic_id):
 
 @login_required(redirect_field_name=None, login_url="not_authorized")
 def profile(request):
+    """Django view for profile page
+
+    Displays profile page with two forms - one for changing the password and other
+    for changing the profile picture. If request method is POST, view checks which
+    form is being sent. After that it checks form validness and if correct it updates
+    user information. Otherwise it displays same forms again.
+
+    User can access this page only, if he is logged in.
+
+    Keyword arguments:
+    request -- django request object
+    """
     if request.method == "POST":
         if request.FILES.get("profile_img", None):
             user_image_form = UserImageForm(request.POST, request.FILES)
@@ -278,6 +394,15 @@ def profile(request):
     return render(request, "profile.html", sp)
 
 def register(request):
+    """Django view for registration page
+
+    This page displays form for registering the user. If request method is POST,
+    it checks, if sent data is correct and if it is, it registers the user. Otherwise
+    it displays same form again.
+
+    Keyword arguments:
+    request -- django request object
+    """
     if request.method == "POST":
         user_creation_form = UserCreationForm(request.POST)
         user_image_form = UserImageForm(request.POST, request.FILES)
@@ -299,6 +424,18 @@ def register(request):
 
 @login_required(redirect_field_name=None, login_url="not_authorized")
 def search(request):
+    """Django view for search results page
+
+    View checks, if request contains GET parameter 'q'. If it is blank, it redirects
+    user to landing page and if it is not supplied, it sends back html error bad request.
+    Otherwise it searches every device's title and description for keywords in supplied
+    parameter. It returns page with all found entries.
+
+    User can access this page only, if he is logged in.
+
+    Keyword arguments:
+    request -- django request object
+    """
     query_string = ''
     found_entries = None
     if ('q' in request.GET) and request.GET['q'].strip():
@@ -324,6 +461,19 @@ def search(request):
 
 @permission_required("gadgetfreak_web.delete_device", login_url="not_authorized")
 def device_delete(request, device_id):
+    """Django view used for deleting the device
+
+    Checks if device id, sent in the argument, is valid. Otherwise returns 404 error.
+    Deletes the device with supplied id and redirects user to the landing page.
+
+    User can acces this view only if it has permission, to delete the
+    device ('gadgetfreak_web.delete_device'). Permission is granted to users in group
+    'Moderators'.
+
+    Keyword arguments:
+    request -- django request object
+    device_id -- id of the device to delete
+    """
     device = Device.objects.filter(id=device_id).first()
     if not device:
         raise Http404
@@ -333,6 +483,15 @@ def device_delete(request, device_id):
     return HttpResponseRedirect(reverse("index"))
 
 def not_authorized(request):
+    """Django view, used for displaying unauthorized error.
+
+    Simple view, which displays html error 401 - unauthorized. It is used by
+    decorators 'login_required' and 'permission_required' as the redirect page
+    of unauthorized requests.
+
+    Keyword arguments:
+    request -- django request object
+    """
     return HttpResponse("Unauthorized", status=401)
 
 
@@ -352,6 +511,22 @@ def not_authorized(request):
 
 
 def make_pagination(query, offset, list_name="objects"):
+    """Makes pagination of things supplied by the query.
+
+    All objects, supplied in the query object are paginated. Current page is
+    calculated using the offset parameter. Returns dictionary of four items, which
+    should be combined with dictionary, sent to django render method. The dictionary
+    contains list of objects on the current page, current page number, tuples of next
+    pages and tuples of previous pages. Tuples are of the following format: (page_number, page_offset)
+
+    To include pagination in the actual template, you should include 'pagintaion.html'
+    in your template.
+
+    Keyword arguments:
+    query -- query of all the objects to paginate
+    offset -- offset of current page
+    list_name -- name of the list in dictionary, which contains objects on the current page
+    """
     if type(query) == list:
         objs = len(query)
     else:
