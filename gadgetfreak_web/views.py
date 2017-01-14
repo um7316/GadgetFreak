@@ -7,12 +7,14 @@ from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 
+import logging
 import re
 
 from .models import Device, TechnicalSpecification, ForumTopic, Comment, UserProfile
 from .forms import LoginForm, DeviceForm, TechnicalSpecificationForm, ForumTopicForm, CommentForm, UserImageForm
 
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 def index(request):
     sp = {

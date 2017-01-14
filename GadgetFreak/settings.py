@@ -123,8 +123,45 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/static'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = "/home/urban/Temp/django_upload"
 
 THUMBNAIL_DEBUG = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file_django': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/home/urban/django_log/django.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admin': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        'django': {
+            'level': 'INFO',
+            'handlers': ['console', 'mail_admin', 'file_django'],
+        },
+        'gadgetfreak_web': {
+            'level': 'INFO',
+            'handlers': ['console', 'mail_admin', 'file_django'],
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '[%(name)s] Message "%(message)s" from %(pathname)s:%(lineno)d in %(funcName)s',
+        },
+    },
+}

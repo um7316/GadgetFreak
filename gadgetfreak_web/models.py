@@ -59,7 +59,8 @@ class Device(models.Model):
 @receiver(models.signals.post_save, sender=Device)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
-        print("create!")
+        #print("create!")
+        pass
 
 class TechnicalSpecification(models.Model):
     name = models.CharField(max_length=100)
