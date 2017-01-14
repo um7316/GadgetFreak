@@ -11,7 +11,7 @@ from .models import Device, ForumTopic
 # Create your tests here.
 class DeviceTest(TestCase):
     def setUp(self):
-        self.u1 = User.objects.create(username='user1')
+        self.u1 = User.objects.create(username='test_user')
 
     def test_device_comments_no(self):
         test_img = Image.new(mode="RGBA", size=(20, 20), color=(0, 0, 0, 0))
