@@ -2,3 +2,4 @@ django-extensions
 sorl-thumbnail
 django-unused-media
 django-cleanup
+Pillow
