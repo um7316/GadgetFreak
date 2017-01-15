@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block main %}
 <div id="breadcrumbs">
-    <a href="index.html">Home</a>&nbsp;
-    > Register
+    <a href="{% url "index" %}">{% blocktrans %}Home{% endblocktrans %}</a>&nbsp;
+    > {% blocktrans %}Register{% endblocktrans %}
 </div>
 <main id="device-main">
     <aside></aside>
     <div>
         <div>
-            <h2>Register a new account:</h2>
+            <h2>{% blocktrans %}Register a new account{% endblocktrans %}:</h2>
             <form action="#" method="post" class="form-list" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ user_creation_form }}
                 {{ user_image_form }}
-                <input type="submit" value="Create a new account" />
+                <input type="submit" value="{% blocktrans %}Create a new account{% endblocktrans %}" />
             </form>
         </div>
     </div>

@@ -1,37 +1,39 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block main %}
 <div id="breadcrumbs">
-    <a href="{% url "index" %}">Home</a>&nbsp;
+    <a href="{% url "index" %}">{% blocktrans %}Home{% endblocktrans %}</a>&nbsp;
     {% if device %}
     > <a href="{% url "device_info" device.id %}">{{ device.title }}</a>&nbsp;
-    > Edit device
+    > {% blocktrans %}Edit device{% endblocktrans %}
     {% else %}
-    > Add device
+    > {% blocktrans %}Add device{% endblocktrans %}
     {% endif %}
 </div>
 <form action="#" method="post" id="device-main" enctype="multipart/form-data">
     {% csrf_token %}
     <aside id="images" class="aside-left form-list">
-        <h2>Images:</h2>
-        <label>Main image:</label>{{ device_form.img_1 }}
-        <label>Image 2:</label>{{ device_form.img_2 }}
-        <label>Image 3:</label>{{ device_form.img_3 }}
-        <label>Image 4:</label>{{ device_form.img_4 }}
+        <h2>{% blocktrans %}Images{% endblocktrans %}:</h2>
+        <label>{% blocktrans %}Main image{% endblocktrans %}:</label>{{ device_form.img_1 }}
+        <label>{% blocktrans %}Image{% endblocktrans %} 2:</label>{{ device_form.img_2 }}
+        <label>{% blocktrans %}Image{% endblocktrans %} 3:</label>{{ device_form.img_3 }}
+        <label>{% blocktrans %}Image{% endblocktrans %} 4:</label>{{ device_form.img_4 }}
     </aside>
     <div id="info" class="grow form-list">
         <div id="device-header">
-            <h2>Main info:</h2>
+            <h2>{% blocktrans %}Main info{% endblocktrans %}:</h2>
         </div>
-        <label>Title:&nbsp;{{ device_form.title }}</label>
-        <label>Description:</label>
+        <label>{% blocktrans %}Title{% endblocktrans %}:&nbsp;{{ device_form.title }}</label>
+        <label>{% blocktrans %}Description{% endblocktrans %}:</label>
         {{ device_form.description }}
-        <input type="submit" value="{% if device %}Edit{% else %}Add{% endif %} device" />
+        <input type="submit" value="{% if device %}{% blocktrans %}Edit{% endblocktrans %}{% else %}{% blocktrans %}Add{% endblocktrans %}{% endif %} {% blocktrans %}device{% endblocktrans %}" />
         {{ device_form.errors }}
     </div>
     <aside id="specifications" class="aside-right aside-border-left">
         <table>
-            <tr><th colspan="2">Technical specifications:</th></tr>
+            <tr><th colspan="2">{% blocktrans %}Technical specifications{% endblocktrans %}:</th></tr>
             {% for spec_form in specs %}
             <tr><td>{{ spec_form.name }}</td><td>{{ spec_form.value }}</td></tr>
             {% endfor %}

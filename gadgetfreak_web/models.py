@@ -4,7 +4,7 @@ from django.db import models
 from django.dispatch import receiver
 
 from django.utils import timezone
-
+from django.utils.translation import pgettext_lazy
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -111,8 +111,8 @@ class ForumTopic(models.Model):
     REVIEW_TYPE = "R"
     COMMENT_TYPE = "C"
     TYPE_CHOICES = (
-        (REVIEW_TYPE, "Review"),
-        (COMMENT_TYPE, "Comment")
+        (REVIEW_TYPE, pgettext_lazy("topic type", "Review")),
+        (COMMENT_TYPE, pgettext_lazy("topic type", "Comment"))
     )
     topic_type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=COMMENT_TYPE)
 
@@ -135,7 +135,7 @@ class Comment(models.Model):
     Field date is automatically set to the creatin date. Field forum_topic is
     used to connect comment to parent topic and field author is used to connect
     comment to its author. Both fields are mandatory. If one of the foreign key
-    objects is deleted, comment is also deleted.
+    objec
     """
     contents = models.TextField()
     date = models.DateTimeField(default=timezone.now)

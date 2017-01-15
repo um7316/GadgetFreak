@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% load tags %}
+{% load i18n %}
 
 {% block main %}
 <div id="breadcrumbs">
-    <a href="{% url "index" %}">Home</a>&nbsp;
+    <a href="{% url "index" %}">{% blocktrans %}Home{% endblocktrans %}</a>&nbsp;
     > {{ device.title }}
 </div>
 <main id="device-main">
@@ -22,8 +23,8 @@
         <div id="device-header">
             <h2>{{ device.title }}</h2>
             <div id="user-score">
-                User reviews:<br />
-                {{ device.get_score }} stars
+                {% blocktrans %}User reviews{% endblocktrans %}:<br />
+                {{ device.get_score }} {% blocktrans %}stars{% endblocktrans %}
             </div>
         </div>
         <p>
@@ -32,19 +33,19 @@
 
         <div class="button-wrapper">
             {% if user.is_authenticated %}
-            <a href="{% url "device_edit" device.id %}" class="link-button">Edit device</a>
+            <a href="{% url "device_edit" device.id %}" class="link-button">{% blocktrans %}Edit device{% endblocktrans %}</a>
             {% endif %}
-            <a href="{% url "device_forum" device.id %}" class="link-button">Device forum</a>
+            <a href="{% url "device_forum" device.id %}" class="link-button">{% blocktrans %}Device forum{% endblocktrans %}</a>
         </div>
         <div class="button-wrapper">
             {% if perms.gadgetfreak_web.delete_device %}
-            <a href="{% url "device_delete" device.id %}" class="link-button">Delete device</a>
+            <a href="{% url "device_delete" device.id %}" class="link-button">{% blocktrans %}Delete device{% endblocktrans %}</a>
             {% endif %}
         </div>
     </div>
     <aside id="specifications" class="aside-right">
         <table>
-            <tr><th colspan="2">Technical specifications:</th></tr>
+            <tr><th colspan="2">{% blocktrans %}Technical specifications{% endblocktrans %}:</th></tr>
             {% for spec in specs %}
                 <tr><td>{{ spec.name }}:</td><td>{{ spec.value }}</td></tr>
             {% endfor %}

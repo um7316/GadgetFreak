@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 import StringIO
 from PIL import Image, ImageChops
@@ -104,6 +105,9 @@ class UserImageForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['profile_img']
+        labels = {
+            'profile_img': _("Profile image")
+        }
 
     def clean_profile_img(self):
         """Function, used for resizing profile image to resolution 60x60, used by the application

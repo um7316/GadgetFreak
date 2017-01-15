@@ -1,31 +1,33 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block main %}
 <div id="breadcrumbs">
-    <a href="{% url "index" %}">Home</a>&nbsp;
+    <a href="{% url "index" %}">{% blocktrans %}Home{% endblocktrans %}</a>&nbsp;
     > <a href="{% url "device_info" device.id %}">{{ device.title }}</a>&nbsp;
-    > <a href="{% url "device_forum" device.id %}">Device Forum</a>&nbsp;
-    > Add topic
+    > <a href="{% url "device_forum" device.id %}">{% blocktrans %}Device Forum{% endblocktrans %}</a>&nbsp;
+    > {% blocktrans %}Add topic{% endblocktrans %}
 </div>
 <main id="device-main" class="register-main">
     <div id="add-topic">
-        <h2>Add a new topic</h2>
+        <h2>{% blocktrans %}Add a new topic{% endblocktrans %}</h2>
         <form action="#" method="post" class="form-list" enctype="multipart/form-data">
             {% csrf_token %}
-            <label>Topic&nbsp;name:&nbsp;{{ topic_form.name }}</label>
-            <label>Topic type:</label>
+            <label>{% blocktrans %}Topic&nbsp;name{% endblocktrans %}:&nbsp;{{ topic_form.name }}</label>
+            <label>{% blocktrans %}Topic type{% endblocktrans %}:</label>
             <div>
                 {% for choice in topic_form.topic_type %}
                     {{ choice.tag }}<label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
                 {% endfor %}
                 <div class="hide-if-comment">
-                    <label>Review image: {{ topic_form.image }}</label>
-                    <label>Review score:&nbsp;{{ topic_form.score }}</label>
+                    <label>{% blocktrans %}Review image{% endblocktrans %}: {{ topic_form.image }}</label>
+                    <label>{% blocktrans %}Review score{% endblocktrans %}:&nbsp;{{ topic_form.score }}</label>
                 </div>
             </div>
-            <label>Contents:</label>
+            <label>{% blocktrans %}Contents{% endblocktrans %}:</label>
             {{ topic_form.contents }}
-            <input type="submit" value="Add new topic" />
+            <input type="submit" value="{% blocktrans %}Add new topic{% endblocktrans %}" />
         </form>
     </div>
 </main>

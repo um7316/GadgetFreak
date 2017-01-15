@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-15 20:35+0000\n"
+"PO-Revision-Date: 2017-01-15 21:36+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#: gadgetfreak_web/forms.py:109
+msgid "Profile image"
+msgstr "Slika profila"
+
+#: gadgetfreak_web/models.py:114
+msgctxt "topic type"
+msgid "Review"
+msgstr "Ocena"
+
+#: gadgetfreak_web/models.py:115
+msgctxt "topic type"
+msgid "Comment"
+msgstr "Komentar"
+
+#: gadgetfreak_web/templates/add-device.html:7
+#: gadgetfreak_web/templates/add-topic.html:7
+#: gadgetfreak_web/templates/device-forum.html:7
+#: gadgetfreak_web/templates/device-info.html:8
+#: gadgetfreak_web/templates/landing.html:8
+#: gadgetfreak_web/templates/profile.html:7
+#: gadgetfreak_web/templates/register.html:7
+#: gadgetfreak_web/templates/search.html:8
+#: gadgetfreak_web/templates/topic.html:7
+msgid "Home"
+msgstr "Domov"
+
+#: gadgetfreak_web/templates/add-device.html:10
+#: gadgetfreak_web/templates/device-info.html:36
+msgid "Edit device"
+msgstr "Uredi napravo"
+
+#: gadgetfreak_web/templates/add-device.html:12
+msgid "Add device"
+msgstr "Dodaj napravo"
+
+#: gadgetfreak_web/templates/add-device.html:18
+msgid "Images"
+msgstr "Slike"
+
+#: gadgetfreak_web/templates/add-device.html:19
+msgid "Main image"
+msgstr "Glavna slika"
+
+#: gadgetfreak_web/templates/add-device.html:20
+#: gadgetfreak_web/templates/add-device.html:21
+#: gadgetfreak_web/templates/add-device.html:22
+msgid "Image"
+msgstr "Slika"
+
+#: gadgetfreak_web/templates/add-device.html:26
+msgid "Main info"
+msgstr "Prijava"
+
+#: gadgetfreak_web/templates/add-device.html:28
+msgid "Title"
+msgstr "Ime"
+
+#: gadgetfreak_web/templates/add-device.html:29
+msgid "Description"
+msgstr "Opis"
+
+#: gadgetfreak_web/templates/add-device.html:31
+msgid "Edit"
+msgstr "Uredi"
+
+#: gadgetfreak_web/templates/add-device.html:31
+msgid "Add"
+msgstr "dodaj"
+
+#: gadgetfreak_web/templates/add-device.html:31
+msgid "device"
+msgstr "napravo"
+
+#: gadgetfreak_web/templates/add-device.html:36
+#: gadgetfreak_web/templates/device-info.html:48
+msgid "Technical specifications"
+msgstr "Tehnične specifikacije"
+
+#: gadgetfreak_web/templates/add-topic.html:9
+#: gadgetfreak_web/templates/device-forum.html:9
+msgid "Device Forum"
+msgstr "Forum naprave"
+
+#: gadgetfreak_web/templates/add-topic.html:10
+msgid "Add topic"
+msgstr "Dodaj temo"
+
+#: gadgetfreak_web/templates/add-topic.html:14
+msgid "Add a new topic"
+msgstr "Dodaj novo temo"
+
+#: gadgetfreak_web/templates/add-topic.html:17
+msgid "Topic&nbsp;name"
+msgstr "Ime&nbsp;teme"
+
+#: gadgetfreak_web/templates/add-topic.html:18
+msgid "Topic type"
+msgstr "Tip teme"
+
+#: gadgetfreak_web/templates/add-topic.html:24
+msgid "Review image"
+msgstr "Slika ocene"
+
+#: gadgetfreak_web/templates/add-topic.html:25
+msgid "Review score"
+msgstr "Ocena"
+
+#: gadgetfreak_web/templates/add-topic.html:28
+msgid "Contents"
+msgstr "Kontakt"
+
+#: gadgetfreak_web/templates/add-topic.html:30
+msgid "Add new topic"
+msgstr "Dodaj novo temo"
+
+#: gadgetfreak_web/templates/base.html:10
+msgid "Gadget Freak - Page for all gadget enthusiasts"
+msgstr "Gadget Freak - Stran za vse navdušence nad napravami"
+
+#: gadgetfreak_web/templates/base.html:24
+msgid "Sign in"
+msgstr "Prijava"
+
+#: gadgetfreak_web/templates/base.html:28
+#: gadgetfreak_web/templates/profile.html:18
+msgid "Username"
+msgstr "Up.&nbsp;ime"
+
+#: gadgetfreak_web/templates/base.html:29
+msgid "Password"
+msgstr "Geslo"
+
+#: gadgetfreak_web/templates/base.html:31
+#: gadgetfreak_web/templates/register.html:8
+msgid "Register"
+msgstr "Registracija"
+
+#: gadgetfreak_web/templates/base.html:31
+msgid "or"
+msgstr "ali"
+
+#: gadgetfreak_web/templates/base.html:31
+msgid "Sign In"
+msgstr "Prijava"
+
+#: gadgetfreak_web/templates/base.html:41
+msgid "Search"
+msgstr "Išči"
+
+#: gadgetfreak_web/templates/base.html:50
+msgid "View profile"
+msgstr "Ogled profila"
+
+#: gadgetfreak_web/templates/base.html:53
+msgid "Log Out"
+msgstr "Odjava"
+
+#: gadgetfreak_web/templates/base.html:66
+msgid "Contact"
+msgstr "Kontakt"
+
+#: gadgetfreak_web/templates/device-forum.html:20
+#: gadgetfreak_web/templates/topic.html:42
+msgid "Date"
+msgstr "Datum"
+
+#: gadgetfreak_web/templates/device-forum.html:21
+#: gadgetfreak_web/templates/landing.html:52
+#: gadgetfreak_web/templates/topic.html:43
+msgid "Author"
+msgstr "Avtor"
+
+#: gadgetfreak_web/templates/device-forum.html:25
+#: gadgetfreak_web/templates/device-info.html:27
+#: gadgetfreak_web/templates/landing.html:26
+#: gadgetfreak_web/templates/landing.html:51
+#: gadgetfreak_web/templates/search.html:33
+#: gadgetfreak_web/templates/topic.html:23
+msgid "stars"
+msgstr "zvezdic"
+
+#: gadgetfreak_web/templates/device-forum.html:27
+#: gadgetfreak_web/templates/landing.html:28
+#: gadgetfreak_web/templates/search.html:35
+msgid "comments"
+msgstr "komentarjev"
+
+#: gadgetfreak_web/templates/device-forum.html:33
+msgid "Add review or comment"
+msgstr "Dodaj oceno ali komentar"
+
+#: gadgetfreak_web/templates/device-forum.html:35
+msgid "Log in to post your comment or review"
+msgstr "Za dodajanje novega komentarja ali ocene se vpišite"
+
+#: gadgetfreak_web/templates/device-info.html:26
+msgid "User reviews"
+msgstr "Ocena uporabnikov"
+
+#: gadgetfreak_web/templates/device-info.html:38
+msgid "Device forum"
+msgstr "Forum naprave"
+
+#: gadgetfreak_web/templates/device-info.html:42
+msgid "Delete device"
+msgstr "Izbriši napravo"
+
+#: gadgetfreak_web/templates/landing.html:12
+msgid "Top devices"
+msgstr "Najboljše naprave"
+
+#: gadgetfreak_web/templates/landing.html:27
+#: gadgetfreak_web/templates/search.html:34
+msgid "reviews"
+msgstr "ocen"
+
+#: gadgetfreak_web/templates/landing.html:39
+msgid "Add new device"
+msgstr "Dodaj novo napravo"
+
+#: gadgetfreak_web/templates/landing.html:43
+msgid "Latest reviews"
+msgstr "Zadnje ocene"
+
+#: gadgetfreak_web/templates/profile.html:8
+msgid "Profile"
+msgstr "Profil"
+
+#: gadgetfreak_web/templates/profile.html:12
+msgid "Your profile"
+msgstr "Vaš profil"
+
+#: gadgetfreak_web/templates/profile.html:16
+msgid "Name and surname"
+msgstr "Ime in priimek"
+
+#: gadgetfreak_web/templates/profile.html:22
+msgid "Statistics"
+msgstr "Statistika"
+
+#: gadgetfreak_web/templates/profile.html:24
+msgid "Devices created"
+msgstr "Ustvarjene naprave"
+
+#: gadgetfreak_web/templates/profile.html:25
+msgid "Reviews posted"
+msgstr "Napisanih ocen"
+
+#: gadgetfreak_web/templates/profile.html:26
+msgid "Comments posted"
+msgstr "Napisanih komentarjev"
+
+#: gadgetfreak_web/templates/profile.html:30
+msgid "Change profile picture"
+msgstr "Spremeni sliko profila"
+
+#: gadgetfreak_web/templates/profile.html:33
+msgid "Choose new picture"
+msgstr "Izberi novo sliko"
+
+#: gadgetfreak_web/templates/profile.html:35
+msgid "Upload"
+msgstr "Pošlji"
+
+#: gadgetfreak_web/templates/profile.html:41
+msgid "Change password"
+msgstr "GesloZamenjaj geslo"
+
+#: gadgetfreak_web/templates/register.html:14
+msgid "Register a new account"
+msgstr "Registriraj nov račun"
+
+#: gadgetfreak_web/templates/register.html:19
+msgid "Create a new account"
+msgstr "Ustvari nov račun"
+
+#: gadgetfreak_web/templates/search.html:9
+msgid "Search results"
+msgstr "Rezultati iskanja"
+
+#: gadgetfreak_web/templates/search.html:15
+msgid "Search results for"
+msgstr "Rezultati iskanja za"
+
+#: gadgetfreak_web/templates/search.html:17
+msgid "No results found for"
+msgstr "Ni rezultatov za"
+
+#: gadgetfreak_web/templates/topic.html:33
+msgid "Comments"
+msgstr "Komentarji"
+
+#: gadgetfreak_web/templates/topic.html:49
+msgid "Submit your comment"
+msgstr "Pošlji svoj komentar"
+
+#: gadgetfreak_web/templates/topic.html:53
+msgctxt "button"
+msgid "Comment"
+msgstr "Komentiraj"
+
+#: gadgetfreak_web/templates/topic.html:56
+msgid "Log in to post your comment"
+msgstr "Za dodajanje novega komentarja se vpišite"
+
+#, fuzzy
+#~| msgid "Topic type"
+#~ msgid "topic type"
+#~ msgstr "Tip teme"
+
+#~ msgid "comment"
+#~ msgstr "komentarjev"

@@ -1,12 +1,13 @@
 {% load static %}
 {% load tags %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset=utf-8 />
-    <title>Gadget Freak - Device List</title>
+    <title>{% blocktrans %}Gadget Freak - Page for all gadget enthusiasts{% endblocktrans %}</title>
 
     <link rel="stylesheet" type="text/css" href="{% static "GadgetFreak/css/common.css" %}">
 </head>
@@ -20,14 +21,14 @@
         </a>
         {% if not user.is_authenticated %}
         <div id="sign-in">
-            <h3>Sign in</h3>
+            <h3>{% blocktrans %}Sign in{% endblocktrans %}</h3>
             <form action="{% url "login" %}" method="post" class="form-list">
                 {% csrf_token %}
                 {% login_form as login_form %}
-                <label>Username: {{ login_form.username }}</label>
-                <label>Password: {{ login_form.password }}</label>
+                <label>{% blocktrans %}Username{% endblocktrans %}: {{ login_form.username }}</label>
+                <label>{% blocktrans %}Password{% endblocktrans %}: {{ login_form.password }}</label>
                 <div class = "form-buttons">
-                    <a href="{% url "register" %}">Register</a> or <input type="submit" value="Sign In" />
+                    <a href="{% url "register" %}">{% blocktrans %}Register{% endblocktrans %}</a> {% blocktrans %}or{% endblocktrans %} <input type="submit" value="{% blocktrans %}Sign In{% endblocktrans %}" />
                 </div>
                 <input type="hidden" name="return_url" value="{{ request.get_full_path }}" />
             </form>
@@ -37,7 +38,7 @@
             <form id="search" class="grow" action="{% url "search" %}" method="get">
                 <input type="text" name="q" class="grow" placeholder="e.g. myphone" required />
                 <label>
-                    <span class="screen-reader">Search</span>
+                    <span class="screen-reader">{% blocktrans %}Search{% endblocktrans %}</span>
                 </label>
                 <input type="image" src="{% static "GadgetFreak/images/search.png" %}" alt="Submit" />
             </form>
@@ -46,10 +47,10 @@
                     <img src="{{ user.profile.profile_img.url }}" alt="profile picture" width=60 height=60 />
                     <div>
                         <span>{{ user.username }}</span>
-                        <a href="{% url "profile" %}">View profile</a>
+                        <a href="{% url "profile" %}">{% blocktrans %}View profile{% endblocktrans %}</a>
                     </div>
                 </div>
-                <a href="{% url "logout" %}" class="link-button">Log Out</a>
+                <a href="{% url "logout" %}" class="link-button">{% blocktrans %}Log Out{% endblocktrans %}</a>
                 </form>
             </div>
         </div>
@@ -62,7 +63,7 @@
             &copy; 2016 GadgetFreak
         </div>
         <div id="footer-right">
-            Contact:<br/>
+            {% blocktrans %}Contact{% endblocktrans %}:<br/>
             Tel: +386 41 123 456<br />
             Mail: <a href="mailto:info@gf-not-real.com">info@gf-not-real.com</a>
         </div>

@@ -1,42 +1,44 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block main %}
 <div id="breadcrumbs">
-    <a href="{% url "index" %}">Home</a>&nbsp;
-    > Profile
+    <a href="{% url "index" %}">{% blocktrans %}Home{% endblocktrans %}</a>&nbsp;
+    > {% blocktrans %}Profile{% endblocktrans %}
 </div>
 <main id="device-main">
     <div class="grow">
-        <h2>Your profile:</h2>
+        <h2>{% blocktrans %}Your profile{% endblocktrans %}:</h2>
         <div id="profile">
             <img src="{{ request.user.profile.profile_img.url }}" alt="profile picture" width=60 height=60 />
             <div>
-                <h3>Name and surname:</h3>
+                <h3>{% blocktrans %}Name and surname{% endblocktrans %}:</h3>
                 <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
-                <h3>Username:</h3>
+                <h3>{% blocktrans %}Username{% endblocktrans %}:</h3>
                 <span>{{ request.user.username }}</span>
             </div>
         </div>
-        <h2>Statistics:</h2>
+        <h2>{% blocktrans %}Statistics{% endblocktrans %}:</h2>
         <dl id="statistics">
-            <dt>Devices created:&nbsp;</dt><dd>{{ devices_created }}</dd>
-            <dt>Reviews posted:&nbsp;</dt><dd>{{ reviews_posted }}</dd>
-            <dt>Comments posted:&nbsp;</dt><dd>{{ comments_posted }}</dd>
+            <dt>{% blocktrans %}Devices created{% endblocktrans %}:&nbsp;</dt><dd>{{ devices_created }}</dd>
+            <dt>{% blocktrans %}Reviews posted{% endblocktrans %}:&nbsp;</dt><dd>{{ reviews_posted }}</dd>
+            <dt>{% blocktrans %}Comments posted{% endblocktrans %}:&nbsp;</dt><dd>{{ comments_posted }}</dd>
         </dl>
     </div>
     <aside class="aside-right aside-border-left">
-        <h2>Change profile picture:</h2>
+        <h2>{% blocktrans %}Change profile picture{% endblocktrans %}:</h2>
         <form action="#" method="post" id="upload-profile-pic-form" enctype="multipart/form-data">
             {% csrf_token %}
-            <label>Choose new picture:</label>
+            <label>{% blocktrans %}Choose new picture{% endblocktrans %}:</label>
             {{ user_image_form.profile_img }}
-            <input type="submit" value="Upload" />
+            <input type="submit" value="{% blocktrans %}Upload{% endblocktrans %}" />
         </form>
-        <h2>Change password:</h2>
+        <h2>Change password{% endblocktrans %}:</h2>
         <form action="#" method="post" class="form-list">
             {% csrf_token %}
             {{ password_change_form }}
-            <input type="submit" value="Change password" />
+            <input type="submit" value="{% blocktrans %}Change password{% endblocktrans %}" />
         </form>
     </aside>
 </main>
