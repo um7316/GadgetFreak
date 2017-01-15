@@ -93,6 +93,7 @@ def device_info(request, device_id):
     sp = {"device": device}
 
     sub_images = {i: e for i, e in enumerate([device.img_1, device.img_2, device.img_3, device.img_4], start=1) if e}
+    print(sub_images)
     img_no = request.GET.get("img", "1")
     if img_no == "2" and device.img_2:
         sp["main_img"] = device.img_2
@@ -103,7 +104,7 @@ def device_info(request, device_id):
     elif img_no == "4" and device.img_4:
         sp["main_img"] = device.img_4
         del sub_images[4]
-    else:
+    elif device.img_1:
         sp["main_img"] = device.img_1
         del sub_images[1]
 
@@ -493,9 +494,6 @@ def not_authorized(request):
     request -- django request object
     """
     return HttpResponse("Unauthorized", status=401)
-
-
-
 
 
 
