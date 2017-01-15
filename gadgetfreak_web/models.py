@@ -56,15 +56,24 @@ class Device(models.Model):
         """Returns score fo the device
 
         Score is calculated by averaging all review scores, made for the device.
-        If no reviews are present for the device, the score rturned is 0.
+        If no reviews are present for the device, the score returned is 0.
         """
+        return self.score
+
+    def update_score(self):
+
         q = ForumTopic.objects.filter(topic_type="R", device_id=self.id)
         if q.count() == 0:
+            self.score = 0
+            self.save()
             return 0
 
         total = sum(res.score for res in q)
 
-        return total / q.count()
+        avg = total / q.count()
+        self.score = avg
+        self.save()
+        return avg
 
     def get_no_reviews(self):
         """Returns number of reviews, made for the device
@@ -75,12 +84,6 @@ class Device(models.Model):
         """Returns number of reviews, made for the device
         """
         return ForumTopic.objects.filter(topic_type="C", device_id=self.id).count()
-
-@receiver(models.signals.post_save, sender=Device)
-def execute_after_save(sender, instance, created, *args, **kwargs):
-    if created:
-        #print("create!")
-        pass
 
 class TechnicalSpecification(models.Model):
     """Model representing technical specificaton of a device
@@ -127,6 +130,12 @@ class ForumTopic(models.Model):
         """Returns number of comments, made for this topic.
         """
         return Comment.objects.filter(forum_topic_id=self.id).count()
+
+@receiver(models.signals.post_save, sender=ForumTopic)
+def execute_after_save(sender, instance, created, *args, **kwargs):
+    if created and instance.topic_type == instance.REVIEW_TYPE:
+        # update device score
+        instance.device.update_score()
 
 class Comment(models.Model):
     """Model, representing comment on the forum topic

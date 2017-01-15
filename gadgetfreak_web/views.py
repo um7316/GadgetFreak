@@ -31,7 +31,7 @@ def index(request):
     }
 
     offset = int(request.GET.get("offset", "0"))
-    q = sorted(Device.objects.all(), key=lambda e: -e.get_score())
+    q = sorted(Device.objects.all(), key=lambda e: -e.score)
     try:
         pagination = make_pagination(q, offset, list_name="devices")
     except:
