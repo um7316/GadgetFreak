@@ -1,0 +1,2 @@
+Pred optimizacijo: ~250 req/min (perf1.png)
+Po optimizaciji: ~860 req/min (perf2.png)
